@@ -1,76 +1,124 @@
-# Red Wine Quality Prediction
+# Red Wine Quality Prediction 🍷✨
 
-A machine learning project focused on predicting the quality of red wine based on its physicochemical properties. This project implements and compares different classification models to achieve a reliable prediction system.
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.7%2B-blue?logo=python&logoColor=white" alt="Python Version">
+  <img src="https://img.shields.io/badge/Scikit--learn-0.24%2B-orange?logo=scikit-learn&logoColor=white" alt="Scikit-learn">
+  <img src="https://img.shields.io/badge/Pandas-1.1%2B-green?logo=pandas&logoColor=white" alt="Pandas">
+  <img src="https://img.shields.io/badge/NumPy-1.19%2B-blueviolet?logo=numpy&logoColor=white" alt="NumPy">
+  <img src="https://img.shields.io/badge/Matplotlib-3.3%2B-yellowgreen?logo=matplotlib&logoColor=white" alt="Matplotlib">
+  <img src="https://img.shields.io/badge/Seaborn-0.11%2B-purple?logo=seaborn&logoColor=white" alt="Seaborn">
+  <img src="https://img.shields.io/badge/Jupyter-Notebook-orange?logo=jupyter&logoColor=white" alt="Jupyter Notebook">
+</p>
 
-## Project Overview
+This project aims to predict the quality of red wine based on its physicochemical attributes. Using a dataset from the UCI Machine Learning Repository, we explore the data, preprocess it, build classification models, and evaluate their performance to determine which wine is 'good' qualité versus 'not good'.
 
-The primary goal of this project is to develop a machine learning model that can classify red wine into quality categories (e.g., "good" vs. "not good") using a publicly available dataset. This involves data exploration, preprocessing, model training, hyperparameter tuning, and evaluation.
+## 📋 Table of Contents
+1.  [Project Domain](#-project-domain)
+2.  [Business Understanding](#-business-understanding)
+3.  [Data Understanding](#-data-understanding)
+4.  [Data Preparation](#-data-preparation)
+5.  [Modeling](#-modeling)
+6.  [Evaluation](#-evaluation)
+7.  [Results Summary](#-results-summary)
+8.  [How to Run](#-how-to-run)
+9.  [File Structure](#-file-structure)
+10. [Technologies Used](#-technologies-used)
+11. [References](#-references)
 
-## Dataset
+## 🌍 Project Domain
+The wine industry is a significant global market where quality is a key determinant of price and consumer satisfaction. Traditional wine quality assessment is often subjective and costly. This project explores using machine learning to provide an objective, data-driven approach to quality assessment based on standard laboratory tests.
 
+## 🎯 Business Understanding
+
+### Problem Statements
+* How can we objectively classify red wine quality using physicochemical test data?
+* What are the most significant chemical properties influencing red wine quality?
+* Can a machine learning model efficiently and accurately distinguish between 'good' and 'not good' quality red wines?
+
+### Goals
+* To develop a classification model that predicts red wine quality (e.g., 'good' vs. 'not good') from its features.
+* To identify key physicochemical drivers of wine quality.
+* To achieve high accuracy and F1-score for reliable predictions.
+
+### Solution Statement
+* Implement and compare two classification algorithms: Logistic Regression (as a baseline) and Random Forest Classifier.
+* Optimize the best-performing model using hyperparameter tuning (GridSearchCV).
+* Evaluate models using metrics like Accuracy, Precision, Recall, and F1-score.
+
+## 📊 Data Understanding
 The project utilizes the **Red Wine Quality dataset** from the UCI Machine Learning Repository.
-- **Source:** [Wine Quality Dataset - UCI](https://archive.ics.uci.edu/ml/datasets/wine+quality)
-- **Citation:** Cortez, P., Cerdeira, A., Almeida, F., Matos, T., & Reis, J. (2009). Modeling wine preferences by data mining from physicochemical properties. *Decision Support Systems, 47*(4), 547-553.
+* **Source:** [Wine Quality Dataset - UCI](https://archive.ics.uci.edu/ml/datasets/wine+quality)
+* **Instances:** 1599
+* **Features:** 11 physicochemical input features and 1 quality output variable (score from 3 to 8).
+    1.  `fixed acidity`
+    2.  `volatile acidity`
+    3.  `citric acid`
+    4.  `residual sugar`
+    5.  `chlorides`
+    6.  `free sulfur dioxide`
+    7.  `total sulfur dioxide`
+    8.  `density`
+    9.  `pH`
+    10. `sulphates`
+    11. `alcohol`
+    12. `quality` (Target Variable: Transformed into binary 0 for 'not good' [<=5] and 1 for 'good' [>5])
 
-The dataset contains 1599 instances of red wine samples with 11 physicochemical input variables and one output variable (quality score from 3 to 8). For this project, the quality score is transformed into a binary target variable (e.g., 0 for "not good" quality, 1 for "good" quality).
+Exploratory Data Analysis (EDA) was performed to understand feature distributions, correlations, and the target variable.
 
-## Problem Statement & Goals
+## 🛠️ Data Preparation
+The following steps were taken to prepare the data for modeling:
+1.  **Loading Data:** Loaded the `winequality-red.csv` dataset.
+2.  **Handling Missing Values:** Checked for and confirmed no missing values.
+3.  **Target Variable Transformation:** Converted the `quality` score (3-8) into a binary target `quality_category`:
+    * `0` (Not Good): if `quality` <= 5
+    * `1` (Good): if `quality` > 5
+4.  **Train-Test Split:** Divided the dataset into training (80%) and testing (20%) sets, stratified by the target variable.
+5.  **Feature Scaling:** Standardized numerical features using `StandardScaler` (fit on training data, transformed on training and testing data).
 
-- **Problem:** To objectively assess red wine quality based on its physicochemical properties, reducing subjectivity and a_nd_inconsistency associated with human tasters.
-- **Goals:**
-    1. To develop a machine learning model capable of accurately classifying red wine quality.
-    2. To identify key physicochemical features influencing red wine quality.
-    3. To compare the performance of different classification algorithms (Logistic Regression and Random Forest).
-    4. To optimize the best-performing model using hyperparameter tuning.
+## 🤖 Modeling
+Two classification models were developed:
 
-## Methodology
+1.  **Logistic Regression:**
+    * Used as a baseline model.
+    * Simple, interpretable, and efficient.
+2.  **Random Forest Classifier:**
+    * An ensemble learning method known for high accuracy and robustness.
+    * Capable of capturing non-linear relationships and providing feature importance.
 
-1.  **Data Understanding & EDA:** Loading the dataset, exploring feature distributions, visualizing correlations, and understanding basic statistics.
-2.  **Data Preparation:**
-    * Handling any missing values (if present, though typically none in this dataset).
-    * Transforming the multi-class `quality` variable into a binary target variable.
-    * Splitting the data into training and testing sets.
-    * Applying feature scaling (StandardScaler) to the input features.
-3.  **Modeling:**
-    * Training a **Logistic Regression** model as a baseline.
-    * Training a **Random Forest Classifier** model.
-    * Comparing their performance using metrics like Accuracy, Precision, Recall, and F1-score.
-4.  **Hyperparameter Tuning:**
-    * Optimizing the Random Forest model (or the best-performing model) using `GridSearchCV` to find the best set of hyperparameters.
-5.  **Evaluation:**
-    * Evaluating the final tuned model on the test set.
-    * Analyzing the classification report and confusion matrix.
-    * Discussing feature importances derived from the Random Forest model.
+**Hyperparameter Tuning:**
+The Random Forest model was further optimized using `GridSearchCV` to find the best combination of parameters (e.g., `n_estimators`, `max_depth`, `min_samples_split`, `min_samples_leaf`), aiming to maximize the F1-score (weighted).
 
-## File Structure
+## 📈 Evaluation
+Model performance was assessed using the following metrics on the test set:
+* **Accuracy:** Overall correctness of predictions. `(TP + TN) / (TP + TN + FP + FN)`
+* **Precision:** Ability of the classifier not to label as positive a sample that is negative. `TP / (TP + FP)`
+* **Recall (Sensitivity):** Ability of the classifier to find all the positive samples. `TP / (TP + FN)`
+* **F1-score:** Weighted average of Precision and Recall. `2 * (Precision * Recall) / (Precision + Recall)`
+    * (Weighted averages for Precision, Recall, and F1-score were used to account for class distribution.)
 
--   `wine-quality-prediction.ipynb`: Jupyter Notebook containing the complete Python code for data loading, preprocessing, EDA, modeling, and evaluation.
--   `format_laporan_submission_1.md` (or your report's filename, e.g., `Project_Report.md`): Detailed project report in Markdown format.
--   `main.py` (or similar): A supplementary Python script (if required for submission structure, may simply point to the notebook).
--   `winequality-red.csv`: The dataset file (ensure this is present or provide instructions on how to obtain it).
--   `README.md`: This file, providing an overview of the project.
-
-## How to Run
+## 🚀 How to Run
 
 1.  **Clone the repository:**
     ```bash
-    git clone [https://github.com/your-username/red-wine-quality-prediction.git](https://github.com/your-username/red-wine-quality-prediction.git)
-    cd red-wine-quality-prediction
+    git clone [https://github.com/your-username/red-wine-quality-predictor.git](https://github.com/your-username/red-wine-quality-predictor.git)
+    cd red-wine-quality-predictor
     ```
-2.  **Ensure you have Python installed.** (Python 3.7+ recommended)
-3.  **Install necessary libraries:**
+2.  **Create a virtual environment (recommended):**
     ```bash
-    pip install pandas numpy matplotlib seaborn scikit-learn jupyter
+    python -m venv venv
+    source venv/bin/activate  # On Windows: venv\Scripts\activate
     ```
-4.  **Dataset:** Make sure the `winequality-red.csv` dataset file is in the project's root directory. If not, download it from the [UCI link](https://archive.ics.uci.edu/ml/datasets/wine+quality) and place it there.
-5.  **Run the Jupyter Notebook:**
+3.  **Install dependencies:**
     ```bash
-    jupyter notebook wine-quality-prediction.ipynb
+    pip install -r requirements.txt
     ```
-    Execute the cells in the notebook sequentially.
+    *(You'll need to create a `requirements.txt` file by running `pip freeze > requirements.txt` in your activated environment after installing all necessary libraries: pandas, numpy, scikit-learn, matplotlib, seaborn, jupyter).*
+4.  **Download the dataset:**
+    Ensure `winequality-red.csv` is in the project's root directory or update the path in the notebook. You can download it from [here](https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-red.csv).
+5.  **Launch Jupyter Notebook:**
+    ```bash
+    jupyter notebook
+    ```
+6.  Open and run the `.ipynb` notebook (e.g., `Red_Wine_Quality_Prediction.ipynb`).
 
-## Results Summary
-
-The project aims to achieve a robust classification model. Key performance metrics (Accuracy, Precision, Recall, F1-score) for Logistic Regression, default Random Forest, and tuned Random Forest are documented within the Jupyter Notebook and the project report. The tuned Random Forest model is expected to provide the best performance. Feature importance analysis also reveals which physicochemical properties are most influential in determining wine quality.
-
-For detailed results and discussion, please refer to the `wine-quality-prediction.ipynb` notebook and the `Project_Report.md` (or your specific report file).
+## 📂 File Structure
