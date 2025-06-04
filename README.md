@@ -19,11 +19,10 @@ This project aims to predict the quality of red wine based on its physicochemica
 4.  [Data Preparation](#-data-preparation)
 5.  [Modeling](#-modeling)
 6.  [Evaluation](#-evaluation)
-7.  [Results Summary](#-results-summary)
-8.  [How to Run](#-how-to-run)
-9.  [File Structure](#-file-structure)
-10. [Technologies Used](#-technologies-used)
-11. [References](#-references)
+7.  [How to Run](#-how-to-run)
+8.  [File Structure](#-file-structure)
+9. [Technologies Used](#-technologies-used)
+10. [References](#-references)
 
 ## 🌍 Project Domain
 The wine industry is a significant global market where quality is a key determinant of price and consumer satisfaction. Traditional wine quality assessment is often subjective and costly. This project explores using machine learning to provide an objective, data-driven approach to quality assessment based on standard laboratory tests.
