@@ -12,6 +12,7 @@ Industri anggur (wine) merupakan sektor agrikultur dan ekonomi yang signifikan s
   1. Cortez, P., Cerdeira, A., Almeida, F., Matos, T., & Reis, J. (2009). Modeling wine preferences by data mining from physicochemical properties. _Decision Support Systems, 47_(4), 547-553. (Ini adalah sumber dataset yang akan kita gunakan).
   2. Ersahin, T., Oksuz, I., & Tirkel, I. (2020). Wine Quality Prediction Using Machine Learning Algorithms. _2020 International Conference on Data Analytics for Business and Industry (ICDABI)_, 1-6. IEEE.
   3. Gupta, Y. K. (2018). Selection of important features and classification of red wine quality using machine learning techniques. _International Journal of Engineering & Technology, 7_(4.36), 704-708.
+  4. Cortez, P., Cerdeira, A., Almeida, F., Matos, T., & Reis, J. (2009). Wine Quality [Dataset]. UCI Machine Learning Repository. https://doi.org/10.24432/C56S3T.
 
 ## Business Understanding
 
