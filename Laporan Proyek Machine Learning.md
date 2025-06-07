@@ -4,62 +4,55 @@
 
 Industri anggur (wine) merupakan sektor agrikultur dan ekonomi yang signifikan secara global. Kualitas anggur adalah faktor penentu utama yang mempengaruhi harga, kepuasan konsumen, dan reputasi produsen. Secara tradisional, kualitas anggur dievaluasi oleh panel pencicip ahli melalui proses sensorik yang bisa jadi subjektif, memakan waktu, dan mahal. Dengan kemajuan teknologi, terdapat kebutuhan untuk metode penilaian kualitas anggur yang lebih objektif, efisien, dan konsisten.
 
-**Rubrik/Kriteria Tambahan (Opsional)**:
-
 - **Mengapa dan bagaimana masalah tersebut harus diselesaikan:**
-  Masalah subjektivitas dan biaya tinggi dalam penilaian kualitas anggur perlu diselesaikan untuk membantu produsen mempertahankan standar kualitas yang konsisten, mengoptimalkan proses produksi, dan memberikan informasi yang lebih transparan kepada konsumen. Pemanfaatan _machine learning_ untuk memprediksi kualitas anggur berdasarkan parameter fisikokimia dapat menjadi solusi. Model prediktif dapat menganalisis data dari tes laboratorium (seperti keasaman, kadar gula, alkohol, dll.) untuk mengklasifikasikan kualitas anggur secara otomatis. Hal ini dapat mempercepat proses evaluasi, mengurangi biaya, dan memberikan _insight_ tentang faktor-faktor apa saja yang paling berpengaruh terhadap kualitas anggur.
+  Masalah subjektivitas dan biaya tinggi dalam penilaian kualitas anggur perlu diselesaikan untuk membantu produsen mempertahankan standar kualitas yang konsisten, mengoptimalkan proses produksi, dan memberikan informasi yang lebih transparan kepada konsumen. Pemanfaatan machine learning untuk memprediksi kualitas anggur berdasarkan parameter fisikokimia dapat menjadi solusi. Model prediktif dapat menganalisis data dari tes laboratorium (seperti keasaman, kadar gula, alkohol, dll.) untuk mengklasifikasikan kualitas anggur secara otomatis. Hal ini dapat mempercepat proses evaluasi, mengurangi biaya, dan memberikan insight tentang faktor-faktor apa saja yang paling berpengaruh terhadap kualitas anggur.
 - **Menyertakan hasil riset terkait atau referensi:**
   1. Cortez, P., Cerdeira, A., Almeida, F., Matos, T., & Reis, J. (2009). Modeling wine preferences by data mining from physicochemical properties. _Decision Support Systems, 47_(4), 547-553. (Ini adalah sumber dataset yang akan kita gunakan).
   2. Ersahin, T., Oksuz, I., & Tirkel, I. (2020). Wine Quality Prediction Using Machine Learning Algorithms. _2020 International Conference on Data Analytics for Business and Industry (ICDABI)_, 1-6. IEEE.
   3. Gupta, Y. K. (2018). Selection of important features and classification of red wine quality using machine learning techniques. _International Journal of Engineering & Technology, 7_(4.36), 704-708.
-  4. Cortez, P., Cerdeira, A., Almeida, F., Matos, T., & Reis, J. (2009). Wine Quality [Dataset]. UCI Machine Learning Repository. https://doi.org/10.24432/C56S3T.
 
 ## Business Understanding
 
-Pada bagian ini, kamu perlu menjelaskan proses klarifikasi masalah terkait prediksi kualitas anggur merah.
+Pada bagian ini, dijelaskan proses klarifikasi masalah terkait prediksi kualitas anggur merah.
 
 ### Problem Statements
 
 - Bagaimana cara mengembangkan sistem yang objektif untuk menilai kualitas anggur merah berdasarkan data uji fisikokimia untuk mengurangi subjektivitas dan inkonsistensi dari penilai manusia?
 - Faktor fisikokimia apa saja yang paling signifikan dalam menentukan kualitas anggur merah?
-- Dapatkah model _machine learning_ dibangun untuk secara akurat mengklasifikasikan anggur merah ke dalam kategori kualitas (misalnya, "baik" vs "kurang baik") dengan efisiensi yang lebih tinggi daripada metode konvensional?
+- Dapatkah model _machine learning_ dibangun untuk secara akurat mengklasifikasikan anggur merah ke dalam kategori kualitas ("Baik" vs "Tidak Baik") dengan efisiensi yang lebih tinggi daripada metode konvensional?
 
 ### Goals
 
-- Mengembangkan model klasifikasi _machine learning_ yang mampu memprediksi kualitas anggur merah (misalnya, "baik" atau "kurang baik") berdasarkan fitur-fitur fisikokimianya.
-- Mengidentifikasi fitur-fitur fisikokimia yang memiliki pengaruh paling besar terhadap kualitas anggur merah.
-- Mencapai akurasi dan F1-score yang tinggi pada model prediksi kualitas anggur untuk memastikan keandalannya.
-
-**Rubrik/Kriteria Tambahan (Opsional)**:
-
-- Menambahkan bagian “Solution Statement” yang menguraikan cara untuk meraih goals. Bagian ini dibuat dengan ketentuan sebagai berikut:
+- Mengembangkan beberapa model klasifikasi _machine learning_ untuk memprediksi kualitas anggur merah ("Baik" atau "Tidak Baik") dan memilih model terbaik.
+- Mengidentifikasi fitur-fitur fisikokimia yang memiliki pengaruh paling besar terhadap kualitas anggur merah menggunakan model terbaik tersebut.
+- Mencapai F1-score setinggi mungkin pada model prediksi kualitas anggur untuk memastikan keandalannya dalam menangani potensi ketidakseimbangan kelas.
 
   ### Solution statements
 
   Untuk mencapai tujuan di atas, berikut adalah pendekatan solusi yang diajukan:
 
-  - **Menggunakan Dua Algoritma Klasifikasi:**
+  - **Menggunakan Tiga Algoritma Klasifikasi:**
     - **Logistic Regression:** Sebagai model dasar (_baseline_) karena kesederhanaan dan interpretasibilitasnya.
-    - **Random Forest Classifier:** Sebagai model yang lebih kompleks yang seringkali memberikan performa lebih baik pada berbagai jenis dataset dan mampu menangani hubungan non-linear serta memberikan informasi mengenai pentingnya fitur.
-      Kedua model akan dievaluasi performanya menggunakan metrik seperti akurasi, presisi, recall, dan F1-score.
+    - **Random Forest Classifier:** Sebagai model _ensemble_ yang kuat dan seringkali memberikan performa yang baik.
+    - **Support Vector Machine (SVM):** Sebagai model kuat lainnya yang efektif dalam ruang berdimensi tinggi.
+      Ketiga model akan dievaluasi performanya menggunakan metrik Akurasi, Presisi, Recall, dan F1-score untuk memilih model dengan kinerja terbaik.
   - **Optimasi Model Terbaik dengan Hyperparameter Tuning:**
-    Model dengan performa terbaik dari kedua algoritma di atas (berdasarkan metrik evaluasi) akan dioptimalkan lebih lanjut menggunakan teknik _hyperparameter tuning_ (misalnya, `GridSearchCV`) untuk meningkatkan kinerjanya. Solusi ini terukur karena peningkatan performa dapat dilihat dari perubahan nilai metrik evaluasi sebelum dan sesudah _tuning_.
+    Model dengan performa terbaik dari ketiga algoritma di atas (berdasarkan metrik F1-score) akan dioptimalkan lebih lanjut menggunakan teknik `GridSearchCV`. Solusi ini terukur karena peningkatan (atau perubahan) performa dapat dilihat dari perbandingan nilai metrik evaluasi sebelum dan sesudah _tuning_.
 
 ## Data Understanding
 
-Paragraf awal bagian ini menjelaskan informasi mengenai data yang Anda gunakan dalam proyek. Dataset yang digunakan dalam proyek ini adalah "Wine Quality Dataset," khususnya data untuk anggur merah (_red wine_). Dataset ini bersumber dari UCI Machine Learning Repository dan merupakan hasil penelitian oleh Cortez et al. (2009).
+Dataset yang digunakan dalam proyek ini adalah "Wine Quality Dataset," khususnya data untuk anggur merah (_red wine_). Dataset ini bersumber dari UCI Machine Learning Repository dan merupakan hasil penelitian oleh Cortez et al. (2009).
 
-Sertakan juga sumber atau tautan untuk mengunduh dataset: [Wine Quality Dataset - UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/wine+quality).
+**Sumber Data:** [Wine Quality Dataset - Kaggle](https://www.kaggle.com/datasets/uciml/red-wine-quality-cortez-et-al-2009) (digunakan dalam notebook via path lokal `./datasets/winequality-red.csv`).
 
-Informasi mengenai data:
+**Informasi mengenai data:**
 
-- **Jumlah Data:** Dataset anggur merah terdiri dari 1599 sampel (observasi).
+- **Jumlah Data:** Dataset anggur merah terdiri dari 1599 sampel.
 - **Jumlah Fitur:** Terdapat 11 fitur input (variabel fisikokimia) dan 1 variabel output (kualitas). Semua fitur adalah numerik.
-- **Kondisi Data:** Perlu diperiksa apakah ada nilai yang hilang (_missing values_) dan bagaimana distribusi masing-masing fitur serta variabel target. Variabel target 'quality' memiliki skala 3 hingga 8. Untuk tujuan klasifikasi biner, variabel ini akan diubah.
+- **Kualitas Data:** Tidak ditemukan nilai yang hilang (_missing values_), namun ditemukan adanya 240 baris duplikat.
+- **Variabel Target:** Variabel target `quality` memiliki skala 3 hingga 8. Untuk tujuan klasifikasi biner, variabel ini akan diubah menjadi `quality_category` (0 untuk 'Tidak Baik', 1 untuk 'Baik').
 
-Selanjutnya uraikanlah seluruh variabel atau fitur pada data.
-
-### Variabel-variabel pada Red Wine Quality Dataset adalah sebagai berikut:
+### Variabel-variabel pada Red Wine Quality Dataset
 
 - **`fixed acidity`**: sebagian besar asam yang terlibat dengan anggur atau tetap atau nonvolatil (tidak mudah menguap) (g/dm³).
 - **`volatile acidity`**: jumlah asam asetat dalam anggur, yang pada tingkat tinggi dapat menyebabkan rasa tidak enak seperti cuka (g/dm³).
@@ -72,125 +65,139 @@ Selanjutnya uraikanlah seluruh variabel atau fitur pada data.
 - **`pH`**: menggambarkan seberapa asam atau basa suatu anggur pada skala dari 0 (sangat asam) hingga 14 (sangat basa); sebagian besar anggur berada di antara 3-4 pada skala pH.
 - **`sulphates`**: aditif anggur yang dapat berkontribusi pada kadar gas sulfur dioksida (SO₂), yang bertindak sebagai antimikroba dan antioksidan (g/dm³).
 - **`alcohol`**: persentase kandungan alkohol dalam anggur (vol %).
-- **`quality`** (Variabel Target): skor antara 0 dan 10 (dalam dataset ini aktualnya 3-8) yang diberikan oleh penilai ahli.
+- **`quality`** (Variabel Target): skor antara 3 dan 8 yang diberikan oleh penilai ahli.
 
-**Rubrik/Kriteria Tambahan (Opsional)**:
+**Rubrik/Kriteria Tambahan:**
 
-- Melakukan beberapa tahapan yang diperlukan untuk memahami data, contohnya teknik visualisasi data atau exploratory data analysis.
-  Tahapan EDA akan dilakukan untuk lebih memahami data, meliputi:
+Tahapan EDA telah dilakukan untuk lebih memahami data, meliputi:
 
-  - Melihat informasi dasar dataset (jumlah baris, kolom, tipe data).
-  - Memeriksa _missing values_.
-  - Melihat statistik deskriptif dari setiap fitur.
-  - Visualisasi distribusi masing-masing fitur numerik (misalnya menggunakan histogram).
-  - Visualisasi distribusi variabel target `quality` sebelum dan sesudah transformasi menjadi kategori biner.
-  - Visualisasi korelasi antar fitur menggunakan _heatmap_.
-
-  _(Contoh kode untuk EDA akan disertakan di bagian Notebook .ipynb)_
+- Melihat informasi dasar dataset (jumlah baris, kolom, tipe data).
+- Memeriksa _missing values_.
+- Melihat statistik deskriptif dari setiap fitur.
+- **Distribusi Variabel Target:** Variabel `quality` diubah menjadi biner (`quality_category`), dengan 744 sampel masuk kategori 'Tidak Baik' (≤5) dan 855 sampel 'Baik' (>5). Distribusi kelas ini cukup seimbang.
+- **Distribusi Fitur Numerik:** Visualisasi menggunakan histogram menunjukkan bahwa banyak fitur memiliki distribusi yang miring (_skewed_), seperti `residual sugar`, `chlorides`, dan `sulphates`.
+- **Deteksi Outlier:** Boxplot menunjukkan adanya banyak _outlier_ pada hampir semua fitur, yang mengindikasikan perlunya penanganan _outlier_ pada tahap persiapan data.
+- **Analisis Korelasi:** Heatmap korelasi menunjukkan bahwa `alcohol` memiliki korelasi positif terkuat dengan `quality` (0.48), sementara `volatile acidity` memiliki korelasi negatif terkuat (-0.39).
 
 ## Data Preparation
 
-Pada bagian ini Anda menerapkan dan menyebutkan teknik data preparation yang dilakukan. Teknik yang digunakan pada notebook dan laporan harus berurutan.
+Teknik persiapan data yang dilakukan secara berurutan sesuai dengan notebook adalah:
 
-1.  **Memuat Dataset:** Data anggur merah (`winequality-red.csv`) dimuat ke dalam DataFrame Pandas.
-2.  **Penanganan Missing Values:** Pemeriksaan dilakukan untuk nilai yang hilang. Jika ada, strategi penanganan (misalnya, imputasi atau penghapusan) akan diterapkan. (Untuk dataset ini, biasanya tidak ada _missing values_).
-3.  **Transformasi Variabel Target:** Variabel `quality` (skala 3-8) akan diubah menjadi variabel biner. Anggur dengan `quality` > 5 akan dikategorikan sebagai 'baik' (1) dan `quality` &lt;= 5 sebagai 'kurang baik' (0).
-4.  **Pemisahan Data:** Dataset dibagi menjadi data latih (_training set_) dan data uji (_testing set_) dengan proporsi tertentu (misalnya, 80% latih, 20% uji).
-5.  **Feature Scaling (Standardization):** Fitur-fitur numerik (semua fitur input) akan distandarisasi menggunakan `StandardScaler`.
+1. **Transformasi Variabel Target:** Variabel `quality` (skala 3-8) diubah menjadi variabel biner `quality_category`. Anggur dengan `quality` > 5 dikategorikan sebagai 'Baik' (1) dan `quality` <= 5 sebagai 'Tidak Baik' (0).
+2. **Penanganan Data Duplikat:** Sebanyak 240 baris data yang terduplikasi dihapus dari dataset untuk menghindari bias pada model. Dataset berkurang menjadi 1359 sampel.
+3. **Penanganan Outlier:** _Outlier_ pada semua fitur input ditangani menggunakan metode IQR. Nilai yang berada di luar batas (Q1 - 1.5*IQR dan Q3 + 1.5*IQR) digantikan dengan nilai batas tersebut (_capping/winsorization_).
+4. **Pemisahan Data:** Dataset dibagi menjadi data latih (1087 sampel) dan data uji (272 sampel) dengan proporsi 80:20. Parameter `stratify=y` digunakan untuk memastikan distribusi kelas target tetap proporsional di kedua set.
+5. **Penskalaan Fitur (Standardization):** Semua fitur input distandarisasi menggunakan `StandardScaler`. Skaler ini dilatih pada data latih dan kemudian digunakan untuk mentransformasi data latih dan data uji.
 
-**Rubrik/Kriteria Tambahan (Opsional)**:
+- **Proses dan Alasan Data Preparation:**
 
-- **Menjelaskan proses data preparation yang dilakukan:**
-  Proses dimulai dengan memuat data dan melakukan inspeksi awal termasuk pengecekan _missing values_. Variabel target 'quality' yang awalnya ordinal diubah menjadi biner untuk menyederhanakan masalah klasifikasi. Pemilihan _threshold_ (>5 untuk 'baik') didasarkan pada praktik umum dan untuk mencoba mendapatkan distribusi kelas yang lebih seimbang, meskipun ini perlu diverifikasi dengan melihat distribusi kelas setelah transformasi. Selanjutnya, data dibagi menjadi set pelatihan dan pengujian untuk evaluasi model yang tidak bias. Akhirnya, semua fitur numerik pada set pelatihan dan pengujian diskalakan menggunakan `StandardScaler`. Skaler ini di-_fit_ hanya pada data pelatihan untuk mencegah kebocoran data (_data leakage_) dari set pengujian, dan kemudian digunakan untuk mentransformasi kedua set.
-- **Menjelaskan alasan mengapa diperlukan tahapan data preparation tersebut:**
-  Setiap tahapan persiapan data memiliki tujuan spesifik.
+Proses persiapan data dimulai dengan mengubah variabel target quality menjadi format biner (quality_category) untuk menyederhanakan masalah menjadi klasifikasi. Setelah inspeksi awal, ditemukan 240 baris data duplikat yang kemudian dihapus untuk memastikan setiap sampel bersifat unik. Selanjutnya, dilakukan penanganan outlier menggunakan metode IQR; nilai-nilai ekstrem pada setiap fitur digantikan dengan nilai ambang batasnya (capping) untuk mengurangi distorsi pada model. Setelah data bersih, dataset dibagi menjadi data latih (80%) dan data uji (20%) menggunakan metode pemisahan terstratifikasi untuk menjaga proporsi kelas. Terakhir, semua fitur input pada data latih dan uji distandarisasi menggunakan StandardScaler. Proses fitting skaler ini hanya dilakukan pada data latih untuk mencegah kebocoran informasi dari data uji, yang kemudian digunakan untuk mentransformasi kedua set data tersebut.
 
-  - **Transformasi Variabel Target:** Diperlukan untuk mengubah masalah menjadi format klasifikasi biner yang sesuai dengan tujuan proyek.
-  - **Pemisahan Data:** Adalah praktik standar untuk mengevaluasi generalisasi model pada data yang belum pernah dilihat sebelumnya.
-  - **Feature Scaling:** Penting karena beberapa algoritma (seperti Logistic Regression) sensitif terhadap skala fitur; tanpa itu, fitur dengan rentang nilai yang lebih besar dapat mendominasi proses pembelajaran. Meskipun Random Forest tidak terlalu terpengaruh oleh skala fitur, menerapkan _scaling_ tidak berdampak negatif dan memastikan konsistensi jika kita membandingkan dengan algoritma lain yang sensitif terhadap skala.
+Setiap tahapan persiapan data memiliki tujuan spesifik.
 
-  _(Contoh kode untuk Data Preparation akan disertakan di bagian Notebook .ipynb)_
+- **Transformasi Target:** Diperlukan untuk mengubah masalah menjadi format klasifikasi biner yang sesuai dengan tujuan proyek.
+- **Penanganan Duplikat:** Krusial untuk memastikan setiap sampel data unik dan mencegah model menjadi bias terhadap sampel yang berulang.
+- **Penanganan Outlier:** Dilakukan untuk mengurangi pengaruh nilai-nilai ekstrem yang dapat mengganggu proses pembelajaran model dan metrik evaluasi. Metode _capping_ dipilih agar tidak kehilangan data.
+- **Pemisahan Data:** Praktik standar untuk mengevaluasi kemampuan generalisasi model pada data yang belum pernah dilihat sebelumnya dan mencegah _overfitting_.
+- **Penskalaan Fitur:** Penting karena algoritma seperti Logistic Regression dan SVM sensitif terhadap skala fitur. Standarisasi memastikan semua fitur memiliki kontribusi yang setara pada proses pembelajaran.
 
 ## Modeling
 
-Tahapan ini membahas mengenai model machine learning yang digunakan untuk menyelesaikan permasalahan. Anda perlu menjelaskan tahapan dan parameter yang digunakan pada proses pemodelan.
+Tahapan ini membahas model _machine learning_ yang digunakan.
 
-1.  **Pemilihan Algoritma:**
-    - Logistic Regression: Sebagai _baseline model_.
-    - Random Forest Classifier: Sebagai model yang lebih kompleks.
-2.  **Pelatihan Model:**
-    Kedua model dilatih menggunakan data latih yang telah diproses. Parameter _default_ dapat digunakan pada awalnya.
-3.  **Hyperparameter Tuning:**
-    Untuk model yang dipilih sebagai yang terbaik (Random Forest), dilakukan _hyperparameter tuning_ menggunakan `GridSearchCV` untuk mencari kombinasi parameter optimal yang menghasilkan performa terbaik pada data validasi silang. Parameter yang akan di-_tune_ untuk Random Forest bisa meliputi `n_estimators`, `max_depth`, `min_samples_split`, dan `min_samples_leaf`.
+1. **Pemilihan Algoritma:** Tiga model klasifikasi digunakan:
+   - Logistic Regression (sebagai _baseline_)
+   - Random Forest Classifier
+   - Support Vector Machine (SVM)
+2. **Pelatihan Model:** Ketiga model dilatih menggunakan data latih yang telah diproses dengan parameter _default_ untuk perbandingan awal.
+3. **Pemilihan Model Terbaik & Hyperparameter Tuning:**
+   - Berdasarkan evaluasi awal pada data uji, **SVM** menunjukkan F1-Score tertinggi (0.7722) dan dipilih sebagai model terbaik untuk dioptimalkan.
+   - Model SVM kemudian dioptimalkan menggunakan `GridSearchCV` untuk mencari kombinasi parameter terbaik dari `C`, `kernel`, dan `gamma`.
 
-**Rubrik/Kriteria Tambahan (Opsional)**:
+- **Kelebihan dan Kekurangan Algoritma:**
 
-- **Menjelaskan kelebihan dan kekurangan dari setiap algoritma yang digunakan:**
-  - **Logistic Regression:**
-    - _Kelebihan:_ Mudah diimplementasikan dan diinterpretasikan. Koefisien model dapat memberikan indikasi tentang pentingnya dan arah hubungan fitur dengan target. Cepat untuk dilatih, bahkan pada dataset besar. Kurang rentan terhadap _overfitting_ pada dataset dengan dimensi rendah.
-    - _Kekurangan:_ Mengasumsikan hubungan linear antara fitur dan log-odds dari variabel target. Mungkin tidak bekerja dengan baik jika batas keputusan bersifat non-linear. Kurang kuat dalam menangkap interaksi kompleks antar fitur.
-  - **Random Forest Classifier:**
-    - _Kelebihan:_ Sangat efektif dan sering memberikan akurasi tinggi. Mampu menangani hubungan non-linear dan interaksi antar fitur secara otomatis. Kurang rentan terhadap _overfitting_ dibandingkan _single decision tree_ karena penggunaan _ensemble_ dan _bagging_. Dapat memberikan estimasi pentingnya fitur. Mampu menangani data dengan dimensi tinggi dan campuran tipe data (meskipun di sini semua numerik).
-    - _Kekurangan:_ Lebih kompleks dan kurang interpretatif dibandingkan Logistic Regression (merupakan _black box model_). Membutuhkan lebih banyak waktu dan sumber daya komputasi untuk dilatih, terutama dengan jumlah _trees_ yang banyak. Parameter perlu di-_tune_ untuk performa optimal.
-- **Jika menggunakan dua atau lebih algoritma pada solution statement, maka pilih model terbaik sebagai solusi. Jelaskan mengapa memilih model tersebut sebagai model terbaik:**
-  Setelah melatih kedua model (Logistic Regression dan Random Forest dengan parameter _default_), performa keduanya akan dibandingkan menggunakan metrik evaluasi (Akurasi, F1-score, Presisi, Recall) pada data uji. **Misalkan Random Forest menunjukkan performa yang lebih unggul secara signifikan dibandingkan Logistic Regression pada metrik-metrik kunci (terutama F1-score mengingat potensi ketidakseimbangan kelas), maka Random Forest akan dipilih sebagai model terbaik.** Alasan pemilihan adalah kemampuannya menangani kompleksitas data yang lebih baik dan potensi akurasi yang lebih tinggi.
-  Selanjutnya, model Random Forest yang terpilih akan melalui proses _improvement_ dengan _hyperparameter tuning_ menggunakan `GridSearchCV`. `GridSearchCV` akan mencari kombinasi parameter terbaik (misalnya, `n_estimators`, `max_depth`, `min_samples_leaf`, `min_samples_split`) dari _grid_ yang ditentukan dengan melakukan validasi silang. Proses ini bertujuan untuk menemukan set parameter yang memaksimalkan performa model (misalnya, F1-score) pada data yang tidak terlihat selama pelatihan setiap _fold_ validasi silang, sehingga meningkatkan kemampuan generalisasi model.
+  - **Logistic Regression:** - _Kelebihan:_ Cepat, mudah diinterpretasikan, dan baik sebagai _baseline_. - _Kekurangan:_ Mengasumsikan hubungan linear, kurang efektif pada masalah yang kompleks.
+  - **Random Forest Classifier:** - _Kelebihan:_ Efektif pada masalah non-linear, tahan terhadap _overfitting_ (dibanding _decision tree_ tunggal), dan dapat memberikan fitur penting. - _Kekurangan:_ Lebih lambat, kurang interpretatif (_black box_). Dalam proyek ini, model ini menunjukkan _overfitting_ yang signifikan (akurasi latih 1.0 vs uji 0.7610).
+  - **Support Vector Machine (SVM):** - _Kelebihan:_ Efektif di ruang berdimensi tinggi, fleksibel dengan berbagai _kernel_, dan memiliki performa yang kuat. - _Kekurangan:_ Kurang efisien pada dataset yang sangat besar, sensitif terhadap pemilihan _kernel_ dan parameter.
 
-  _(Contoh kode untuk Modeling akan disertakan di bagian Notebook .ipynb)_
+  - **Pemilihan Model Terbaik dan Proses Improvement:**
+    - Model **SVM (dengan parameter _default_)** dipilih sebagai solusi terbaik karena memberikan **F1-Score tertinggi (0.7722)** pada data uji, mengungguli Logistic Regression (0.7245) dan Random Forest (0.7612).
+    - Proses _improvement_ dilakukan dengan `GridSearchCV` pada model SVM. Hasilnya, parameter terbaik yang ditemukan adalah `{'C': 100, 'gamma': 0.01, 'kernel': 'rbf'}`. Namun, model yang telah di-_tuning_ ini justru menunjukkan performa sedikit lebih rendah (F1-Score 0.7539) pada data uji dibandingkan model SVM _default_.
+    - Oleh karena itu, **model akhir yang dipilih sebagai solusi terbaik adalah SVM dengan parameter _default_**, karena menunjukkan kemampuan generalisasi yang paling unggul pada data yang belum pernah dilihat.
 
 ## Evaluation
 
-Pada bagian ini anda perlu menyebutkan metrik evaluasi yang digunakan. Lalu anda perlu menjelaskan hasil proyek berdasarkan metrik evaluasi yang digunakan.
+Pada bagian ini, dilakukan evaluasi terhadap model-model yang telah dilatih untuk mengukur kinerjanya dalam memprediksi kualitas anggur.
 
-Metrik evaluasi yang digunakan adalah:
+### Metrik Evaluasi yang Digunakan
 
-- **Akurasi (Accuracy):** Persentase prediksi yang benar dari total prediksi.
-- **Presisi (Precision):** Dari semua yang diprediksi sebagai kelas positif, berapa banyak yang benar-benar positif. Penting ketika biaya _False Positive_ tinggi.
-- **Recall (Sensitivity):** Dari semua yang sebenarnya kelas positif, berapa banyak yang berhasil diprediksi sebagai positif. Penting ketika biaya _False Negative_ tinggi.
-- **F1-score:** Rata-rata harmonik dari Presisi dan Recall. Merupakan metrik yang baik jika ada ketidakseimbangan kelas.
+Berikut adalah metrik-metrik yang digunakan untuk mengevaluasi performa model:
 
-**Menjelaskan hasil proyek berdasarkan metrik evaluasi:**
-Hasil akan disajikan dalam bentuk tabel yang membandingkan performa Logistic Regression dan Random Forest (sebelum dan sesudah tuning) pada data uji. Misalnya:
+- **Confusion Matrix:** Sebuah tabel untuk visualisasi performa yang menunjukkan jumlah prediksi benar dan salah (True Positive, True Negative, False Positive, dan False Negative).
+- **Akurasi (Accuracy):** Persentase total prediksi yang benar. Memberikan gambaran umum kinerja model.
+- **Presisi (Precision):** Rasio prediksi positif yang benar terhadap total prediksi positif. Penting untuk meminimalkan kesalahan pelabelan positif (False Positive).
+- **Recall (Sensitivity):** Rasio prediksi positif yang benar terhadap total data yang sebenarnya positif. Penting untuk meminimalkan sampel positif yang terlewat (False Negative).
+- **F1-Score:** Rata-rata harmonik dari Presisi dan Recall. Menjadi metrik acuan utama karena memberikan keseimbangan antara Presisi dan Recall, terutama jika ada potensi ketidakseimbangan kelas.
+- **Classification Report:** Laporan teks yang merangkum nilai Presisi, Recall, dan F1-Score untuk setiap kelas secara individual.
+- **Permutation Importance:** Teknik untuk mengukur seberapa besar pengaruh sebuah fitur terhadap performa model, digunakan untuk interpretasi model terbaik.
 
-| Model                   | Akurasi | Presisi (kelas 1) | Recall (kelas 1) | F1-score (kelas 1) |
-| :---------------------- | :------ | :---------------- | :--------------- | :----------------- |
-| Logistic Regression     | (nilai) | (nilai)           | (nilai)          | (nilai)            |
-| Random Forest (default) | (nilai) | (nilai)           | (nilai)          | (nilai)            |
-| Random Forest (tuned)   | (nilai) | (nilai)           | (nilai)          | (nilai)            |
+### Hasil Proyek Berdasarkan Metrik Evaluasi
 
-Akan dijelaskan bagaimana model Random Forest yang telah di-_tune_ (jika ini adalah model terbaik) menunjukkan peningkatan dibandingkan versi _default_ dan model Logistic Regression. Pemilihan metrik F1-score sebagai acuan utama juga akan ditekankan jika terdapat indikasi ketidakseimbangan kelas setelah transformasi variabel target.
+Tabel berikut merangkum hasil evaluasi dari semua model yang diuji pada _test set_:
 
-**Rubrik/Kriteria Tambahan (Opsional)**:
+| Model                   | Train Accuracy | Test Accuracy | Test Precision | Test Recall | Test F1-Score |
+| :---------------------- | :------------- | :------------ | :------------- | :---------- | :------------ |
+| Logistic Regression     | 0.7470         | 0.7243        | 0.7257         | 0.7243      | 0.7245        |
+| Random Forest (Default) | 1.0000         | 0.7610        | 0.7624         | 0.7610      | 0.7612        |
+| **SVM (Default)**       | **0.8050**     | **0.7721**    | **0.7745**     | **0.7721**  | **0.7722**    |
+| SVM (Tuned)             | 0.7893         | 0.7537        | 0.7546         | 0.7537      | 0.7539        |
 
-- **Menjelaskan formula metrik dan bagaimana metrik tersebut bekerja:**
+(Semua metrik Precision, Recall, dan F1-Score adalah 'weighted average')
 
-  - **Akurasi:** Mengukur proporsi total prediksi yang benar.
-    - _Formula:_ `(TP + TN) / (TP + TN + FP + FN)`
-    - _Cara kerja:_ Bekerja baik jika kelas seimbang, namun bisa menyesatkan jika ada ketidakseimbangan kelas.
-  - **Presisi:** Untuk kelas 'baik' (1), presisi mengukur seberapa sering model benar ketika ia memprediksi anggur sebagai 'baik'.
-    - _Formula:_ `TP / (TP + FP)`
-    - _Cara kerja:_ Presisi tinggi berarti model jarang salah mengklasifikasikan anggur 'kurang baik' sebagai 'baik'.
-  - **Recall:** Untuk kelas 'baik' (1), recall mengukur seberapa banyak dari semua anggur yang sebenarnya 'baik' berhasil diidentifikasi oleh model.
-    - _Formula:_ `TP / (TP + FN)`
-    - _Cara kerja:_ Recall tinggi berarti model mampu menemukan sebagian besar anggur 'baik'.
-  - **F1-score:** Memberikan keseimbangan antara Presisi dan Recall.
-    - _Formula:_ `2 * (Precision * Recall) / (Precision + Recall)`
-    - _Cara kerja:_ Ini sangat berguna ketika distribusi kelas tidak seimbang karena ia memperhitungkan kedua jenis kesalahan (FP dan FN). F1-score yang tinggi menunjukkan bahwa model memiliki presisi dan recall yang baik.
+- **Model Terbaik:** **SVM (Default)** terpilih sebagai model terbaik dengan **F1-Score 0.7722**. Model ini memberikan keseimbangan terbaik antara Presisi dan Recall, serta menunjukkan generalisasi yang baik karena perbedaan kecil antara akurasi pada data latih dan data uji.
+- **Analisis Fitur Penting:** Menggunakan metode **Permutation Importance** pada model SVM terbaik, ditemukan bahwa fitur-fitur yang paling berpengaruh dalam menentukan kualitas anggur adalah:
+  1. `alcohol`
+  2. `sulphates`
+  3. `volatile acidity` 4.`total sulfur dioxide`
+     Hasil ini menjawab salah satu tujuan bisnis utama, yaitu mengidentifikasi faktor-faktor kunci penentu kualitas anggur.
 
-  Dimana:
+### Penjelasan Formula dan Cara Kerja Metrik
 
-  - TP (True Positive): Sampel positif yang diprediksi benar.
-  - TN (True Negative): Sampel negatif yang diprediksi benar.
-  - FP (False Positive): Sampel negatif yang salah diprediksi sebagai positif (Type I Error).
-  - FN (False Negative): Sampel positif yang salah diprediksi sebagai negatif (Type II Error).
+#### **1. Confusion Matrix**
 
-  Metrik evaluasi ini dipilih karena memberikan gambaran komprehensif tentang kinerja model klasifikasi, terutama dalam konteks di mana identifikasi anggur 'baik' dan 'kurang baik' sama-sama penting, dan potensi ketidakseimbangan kelas perlu diperhatikan.
+- **Struktur:** Tabel N x N yang memvisualisasikan performa klasifikasi. Untuk klasifikasi biner, komponennya adalah:
+  - **True Positive (TP):** Data positif yang diprediksi benar.
+  - **True Negative (TN):** Data negatif yang diprediksi benar.
+  - **False Positive (FP):** Data negatif yang salah diprediksi positif (Error Tipe I).
+  - **False Negative (FN):** Data positif yang salah diprediksi negatif (Error Tipe II).
+- **Konteks Proyek:** Membantu melihat secara detail di mana model membuat kesalahan, misalnya berapa banyak anggur berkualitas buruk yang salah dilabeli sebagai berkualitas baik (FP).
 
-  _(Contoh kode untuk Evaluation akan disertakan di bagian Notebook .ipynb)_
+#### **2. Akurasi (Accuracy)**
 
-**---Ini adalah bagian akhir laporan---**
+- **Formula:** $$\text{Akurasi} = \frac{\text{TP} + \text{TN}}{\text{TP} + \text{TN} + \text{FP} + \text{FN}}$$
+- **Konteks Proyek:** Memberikan gambaran umum seberapa sering model berhasil menebak kualitas anggur dengan tepat secara keseluruhan.
 
-_Catatan:_
+#### **3. Presisi (Precision)**
 
-- _Anda dapat menambahkan gambar, kode, atau tabel ke dalam laporan jika diperlukan. Temukan caranya pada contoh dokumen markdown di situs editor [Dillinger](https://dillinger.io/), [Github Guides: Mastering markdown](https://guides.github.com/features/mastering-markdown/), atau sumber lain di internet. Semangat!_
-- Jika terdapat penjelasan yang harus menyertakan code snippet, tuliskan dengan sewajarnya. Tidak perlu menuliskan keseluruhan kode project, cukup bagian yang ingin dijelaskan saja.
+- **Formula:** $$\text{Presisi} = \frac{\text{TP}}{\text{TP} + \text{FP}}$$
+- **Konteks Proyek:** Menjawab pertanyaan, "Dari semua anggur yang diprediksi berkualitas baik, berapa persen yang _benar-benar_ baik?". Penting untuk menghindari kekecewaan konsumen akibat pelabelan yang salah.
+
+#### **4. Recall (Sensitivity)**
+
+- **Formula:** $$\text{Recall} = \frac{\text{TP}}{\text{TP} + \text{FN}}$$
+- **Konteks Proyek:** Menjawab pertanyaan, "Dari semua anggur yang _sebenarnya_ berkualitas baik, berapa persen yang berhasil ditemukan oleh model?". Penting agar tidak ada produk unggulan yang terlewatkan.
+
+#### **5. F1-Score**
+
+- **Formula:** $$\text{F1-Score} = 2 \times \frac{\text{Presisi} \times \text{Recall}}{\text{Presisi} + \text{Recall}}$$
+- **Konteks Proyek:** Menjadi metrik utama karena memberikan skor tunggal yang menyeimbangkan antara pentingnya menghindari kesalahan pelabelan (Presisi) dan pentingnya menemukan semua produk bagus (Recall).
+
+#### **6. Classification Report**
+
+- **Struktur:** Laporan teks yang merangkum nilai **Presisi, Recall, dan F1-Score** untuk setiap kelas secara terpisah.
+- **Konteks Proyek:** Krusial untuk menganalisis apakah model memiliki kecenderungan lebih baik dalam memprediksi satu kelas dibandingkan kelas lainnya.
+
+#### **7. Permutation Importance**
+
+- **Struktur:** `Importance(F) = Score_baseline - Score_permuted(F)`
+- **Konteks Proyek:** Digunakan setelah model terbaik dipilih untuk menjawab pertanyaan bisnis mengenai faktor kimia apa saja yang paling berpengaruh dalam menentukan kualitas anggur.
