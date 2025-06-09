@@ -133,11 +133,11 @@ Tahapan ini membahas model _machine learning_ yang digunakan, dari cara kerja, k
 
 Tiga model dilatih menggunakan data latih untuk perbandingan awal. Berikut adalah konfigurasi parameter eksplisit yang digunakan:
 
-| Model                        | Parameter yang Digunakan                                    |
-| :--------------------------- | :---------------------------------------------------------- |
-| Logistic Regression          | `solver='liblinear'`, `max_iter=1000`, `random_state=42`    |
-| Random Forest Classifier     | `n_estimators=100`, `random_state=42`                       |
-| Support Vector Machine (SVM) | `random_state=42` (menggunakan kernel `rbf` secara default) |
+| Model                        | Parameter yang Digunakan                                 |
+| :--------------------------- | :------------------------------------------------------- |
+| Logistic Regression          | `solver='liblinear'`, `max_iter=1000`, `random_state=42` |
+| Random Forest Classifier     | `n_estimators=100`, `random_state=42`                    |
+| Support Vector Machine (SVM) | `random_state=42`, `kernel='rbf'` (parameter default)    |
 
 ### Pemilihan Model Terbaik & Hyperparameter Tuning
 
@@ -147,8 +147,8 @@ Tiga model dilatih menggunakan data latih untuk perbandingan awal. Berikut adala
   ```python
   param_grid = {
       'C': [0.1, 1, 10, 100],
-      'kernel': ['rbf', 'linear'],
-      'gamma': [0.1, 0.01, 0.001]
+      'kernel': ['linear', 'rbf', 'poly'],
+      'gamma': ['scale', 'auto', 0.001, 0.01, 0.1]
   }
   ```
 
@@ -163,7 +163,7 @@ Pada bagian ini, dilakukan evaluasi terhadap model-model yang telah dilatih untu
 
 ### Metrik Evaluasi yang Digunakan
 
-Metrik utama yang digunakan adalah **F1-Score** karena kemampuannya menyeimbangkan presisi dan recall, yang sangat relevan untuk masalah klasifikasi ini. Metrik pendukung lainnya adalah Akurasi, Presisi, Recall, dan Confusion Matrix. Berikut adalah metrik-metrik yang digunakan untuk mengevaluasi performa model:
+Metrik utama yang digunakan adalah **F1-Score** karena kemampuannya menyeimbangkan presisi dan recall, yang sangat relevan untuk masalah klasifikasi ini. Metrik pendukung lainnya adalah Akurasi, Presisi, Recall, Confusion Matrix, Classification Report, dan Permutation Importance.
 
 - **Confusion Matrix:** Sebuah tabel untuk visualisasi performa yang menunjukkan jumlah prediksi benar dan salah (True Positive, True Negative, False Positive, dan False Negative).
 - **Akurasi (Accuracy):** Persentase total prediksi yang benar. Memberikan gambaran umum kinerja model.
@@ -178,11 +178,11 @@ Metrik utama yang digunakan adalah **F1-Score** karena kemampuannya menyeimbangk
 Tabel berikut merangkum hasil evaluasi dari semua model yang diuji pada _test set_. Nilai Presisi, Recall, dan F1-Score yang ditampilkan adalah rata-rata tertimbang (_weighted average_).
 
 | Model                   | Train Accuracy | Test Accuracy | Test Precision | Test Recall | Test F1-Score |
-| :---------------------- | :------------- | :------------ | :------------- | :---------- | :------------ |
-| Logistic Regression     | 0.7470         | 0.7243        | 0.7257         | 0.7243      | 0.7245        |
-| Random Forest (Default) | 1.0000         | 0.7610        | 0.7624         | 0.7610      | 0.7612        |
-| **SVM (Default)**       | **0.8050**     | **0.7721**    | **0.7745**     | **0.7721**  | **0.7722**    |
-| SVM (Tuned)             | 0.7893         | 0.7537        | 0.7546         | 0.7537      | 0.7539        |
+| :---------------------- | :------------: | :-----------: | :------------: | :---------: | :-----------: |
+| Logistic Regression     |     0.7470     |    0.7243     |     0.7257     |   0.7243    |    0.7245     |
+| Random Forest (Default) |     1.0000     |    0.7610     |     0.7624     |   0.7610    |    0.7612     |
+| **SVM (Default)**       |   **0.8050**   |  **0.7721**   |   **0.7745**   | **0.7721**  |  **0.7722**   |
+| SVM (Tuned)             |     0.7893     |    0.7537     |     0.7546     |   0.7537    |    0.7539     |
 
 - **Model Terbaik:** **SVM (Default)** terpilih sebagai model terbaik dengan **F1-Score 0.7722**. Model ini tidak hanya memiliki F1-Score tertinggi, tetapi juga menunjukkan generalisasi yang baik karena perbedaan kecil antara akurasi pada data latih (0.8050) dan data uji (0.7721), tidak seperti Random Forest yang mengalami _overfitting_ parah (akurasi latih 1.0).
 
@@ -191,12 +191,12 @@ Tabel berikut merangkum hasil evaluasi dari semua model yang diuji pada _test se
 Berikut adalah _confusion matrix_ untuk model terbaik (**SVM Default**) pada data uji:
 
 ```Prediksi Tidak Baik  Prediksi Baik
-Aktual Tidak Baik      82                  23
-Aktual Baik            39                 128
+Aktual Tidak Baik         102                 26
+Aktual Baik                36                108
 ```
 
-- Dari 147 anggur yang sebenarnya berkualitas 'Baik' (1), model berhasil memprediksi 128 dengan benar (TP) dan melewatkan 39 (FN).
-- Dari 125 anggur yang sebenarnya berkualitas 'Tidak Baik' (0), model berhasil memprediksi 82 dengan benar (TN) dan salah mengklasifikasikan 23 sebagai 'Baik' (FP).
+- Dari 144 anggur yang sebenarnya berkualitas 'Baik' (1), model berhasil memprediksi **108** dengan benar (True Positive) dan melewatkan **36** (False Negative).
+- Dari 128 anggur yang sebenarnya berkualitas 'Tidak Baik' (0), model berhasil memprediksi **102** dengan benar (True Negative) dan salah mengklasifikasikan **26** sebagai 'Baik' (False Positive).
 
 ### Analisis Fitur Penting
 
