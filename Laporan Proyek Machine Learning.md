@@ -6,7 +6,7 @@ Industri anggur (wine) merupakan sektor agrikultur dan ekonomi yang signifikan s
 
 - **Mengapa dan bagaimana masalah tersebut harus diselesaikan:**
   Masalah subjektivitas dan biaya tinggi dalam penilaian kualitas anggur perlu diselesaikan untuk membantu produsen mempertahankan standar kualitas yang konsisten, mengoptimalkan proses produksi, dan memberikan informasi yang lebih transparan kepada konsumen. Pemanfaatan machine learning untuk memprediksi kualitas anggur berdasarkan parameter fisikokimia dapat menjadi solusi. Model prediktif dapat menganalisis data dari tes laboratorium (seperti keasaman, kadar gula, alkohol, dll.) untuk mengklasifikasikan kualitas anggur secara otomatis. Hal ini dapat mempercepat proses evaluasi, mengurangi biaya, dan memberikan insight tentang faktor-faktor apa saja yang paling berpengaruh terhadap kualitas anggur.
-- **Menyertakan hasil riset terkait atau referensi:**
+- **Hasil Riset Terkait atau Referensi:**
   1. Cortez, P., Cerdeira, A., Almeida, F., Matos, T., & Reis, J. (2009). Modeling wine preferences by data mining from physicochemical properties. _Decision Support Systems, 47_(4), 547-553. (Ini adalah sumber dataset yang akan kita gunakan).
   2. Ersahin, T., Oksuz, I., & Tirkel, I. (2020). Wine Quality Prediction Using Machine Learning Algorithms. _2020 International Conference on Data Analytics for Business and Industry (ICDABI)_, 1-6. IEEE.
   3. Gupta, Y. K. (2018). Selection of important features and classification of red wine quality using machine learning techniques. _International Journal of Engineering & Technology, 7_(4.36), 704-708.
