@@ -6,10 +6,12 @@ Industri anggur (wine) merupakan sektor agrikultur dan ekonomi yang signifikan s
 
 - **Mengapa dan bagaimana masalah tersebut harus diselesaikan:**
   Masalah subjektivitas dan biaya tinggi dalam penilaian kualitas anggur perlu diselesaikan untuk membantu produsen mempertahankan standar kualitas yang konsisten, mengoptimalkan proses produksi, dan memberikan informasi yang lebih transparan kepada konsumen. Pemanfaatan machine learning untuk memprediksi kualitas anggur berdasarkan parameter fisikokimia dapat menjadi solusi. Model prediktif dapat menganalisis data dari tes laboratorium (seperti keasaman, kadar gula, alkohol, dll.) untuk mengklasifikasikan kualitas anggur secara otomatis. Hal ini dapat mempercepat proses evaluasi, mengurangi biaya, dan memberikan insight tentang faktor-faktor apa saja yang paling berpengaruh terhadap kualitas anggur.
-- **Hasil Riset Terkait atau Referensi:**
-  1. Cortez, P., Cerdeira, A., Almeida, F., Matos, T., & Reis, J. (2009). Modeling wine preferences by data mining from physicochemical properties. _Decision Support Systems, 47_(4), 547-553. (Ini adalah sumber dataset yang akan kita gunakan).
-  2. Ersahin, T., Oksuz, I., & Tirkel, I. (2020). Wine Quality Prediction Using Machine Learning Algorithms. _2020 International Conference on Data Analytics for Business and Industry (ICDABI)_, 1-6. IEEE.
-  3. Gupta, Y. K. (2018). Selection of important features and classification of red wine quality using machine learning techniques. _International Journal of Engineering & Technology, 7_(4.36), 704-708.
+- **Referensi Hasil Riset Terkait:**
+  1. Cortez, P., Cerdeira, A., Almeida, F., Matos, T., & Reis, J. (2009). Modeling wine preferences by data mining from physicochemical properties. _Decision Support Systems, 47_(4), 547-553. [https://doi.org/10.1016/j.dss.2009.05.016](https://doi.org/10.1016/j.dss.2009.05.016)
+  2. Gonzalez Viejo, C., & Fuentes, S. (2020). Digital assessment and classification of wine faults using a low-cost electronic nose, near-infrared spectroscopy and machine learning modelling. _Sensors, 20_(21), 6173. [https://doi.org/10.3390/s20216173](https://doi.org/10.3390/s20216173)
+  3. Ivanov, M., Ljubojevic, M., Jovic, S., Simic, V., & Stojanovic, M. (2021). Analysis of wine quality prediction using various machine learning techniques. _Applied Sciences, 11_(19), 9022. [https://doi.org/10.3390/app11199022](https://www.google.com/search?q=https://doi.org/10.3390/app11199022)
+  4. Kumar, S., Agrawal, K., & Mandan, N. (2020). Red wine quality prediction using machine learning techniques. _2020 International Conference on Computer Communication and Informatics (ICCCI)_, 1-6. IEEE. [https://doi.org/10.1109/ICCCI48352.2020.9104095](https://www.google.com/search?q=https://doi.org/10.1109/ICCCI48352.2020.9104095)
+  5. Qureshi, M. A., Qureshi, K. N., Karrar, A., Rehman, F., Haruna, C., Alfayad, M., & Hasan, N. U. (2023). Machine learning-based predictive modelling for the enhancement of wine quality. _Scientific Reports, 13_(1), 16498. [https://doi.org/10.1038/s41598-023-44111-9](https://www.google.com/search?q=https://doi.org/10.1038/s41598-023-44111-9)
 
 ## Business Understanding
 
