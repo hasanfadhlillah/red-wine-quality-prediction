@@ -69,8 +69,6 @@ Dataset yang digunakan dalam proyek ini adalah "Wine Quality Dataset," khususnya
 - **`alcohol`**: persentase kandungan alkohol dalam anggur (vol %).
 - **`quality`** (Variabel Target): skor antara 3 dan 8 yang diberikan oleh penilai ahli.
 
-**Rubrik/Kriteria Tambahan:**
-
 Tahapan EDA telah dilakukan untuk lebih memahami data, meliputi:
 
 - Melihat informasi dasar dataset (jumlah baris, kolom, tipe data).
