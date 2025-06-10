@@ -336,6 +336,7 @@ Menggunakan metode **Permutation Importance** pada model SVM terbaik, ditemukan 
 4. `total sulfur dioxide`
 
 ![Peringkat Fitur](assets/gambar9.png)
+
 _Gambar 9: Peringkat Fitur Berdasarkan Penurunan Rata-rata F1-Score._
 
 - **Kesimpulan Insight Bisnis:**
