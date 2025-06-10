@@ -2,10 +2,10 @@
 
 ## Domain Proyek
 
-Industri anggur (wine) merupakan sektor agrikultur dan ekonomi yang signifikan secara global. Kualitas anggur adalah faktor penentu utama yang mempengaruhi harga, kepuasan konsumen, dan reputasi produsen. Secara tradisional, kualitas anggur dievaluasi oleh panel pencicip ahli melalui proses sensorik yang bisa jadi subjektif, memakan waktu, dan mahal. Dengan kemajuan teknologi, terdapat kebutuhan untuk metode penilaian kualitas anggur yang lebih objektif, efisien, dan konsisten.
+Industri anggur (_wine_) merupakan sektor agrikultur dan ekonomi yang signifikan secara global. Kualitas anggur adalah faktor penentu utama yang mempengaruhi harga, kepuasan konsumen, dan reputasi produsen. Secara tradisional, kualitas anggur dievaluasi oleh panel pencicip ahli melalui proses sensorik yang bisa jadi subjektif, memakan waktu, dan mahal. Dengan kemajuan teknologi, terdapat kebutuhan untuk metode penilaian kualitas anggur yang lebih objektif, efisien, dan konsisten.
 
 - **Mengapa dan bagaimana masalah tersebut harus diselesaikan:**
-  Masalah subjektivitas dan biaya tinggi dalam penilaian kualitas anggur perlu diselesaikan untuk membantu produsen mempertahankan standar kualitas yang konsisten, mengoptimalkan proses produksi, dan memberikan informasi yang lebih transparan kepada konsumen. Pemanfaatan machine learning untuk memprediksi kualitas anggur berdasarkan parameter fisikokimia dapat menjadi solusi. Model prediktif dapat menganalisis data dari tes laboratorium (seperti keasaman, kadar gula, alkohol, dll.) untuk mengklasifikasikan kualitas anggur secara otomatis. Hal ini dapat mempercepat proses evaluasi, mengurangi biaya, dan memberikan insight tentang faktor-faktor apa saja yang paling berpengaruh terhadap kualitas anggur.
+  Masalah subjektivitas dan biaya tinggi dalam penilaian kualitas anggur perlu diselesaikan untuk membantu produsen mempertahankan standar kualitas yang konsisten, mengoptimalkan proses produksi, dan memberikan informasi yang lebih transparan kepada konsumen. Pemanfaatan _machine learning_ untuk memprediksi kualitas anggur berdasarkan parameter fisikokimia dapat menjadi solusi. Model prediktif dapat menganalisis data dari tes laboratorium (seperti keasaman, kadar gula, alkohol, dll.) untuk mengklasifikasikan kualitas anggur secara otomatis. Hal ini dapat mempercepat proses evaluasi, mengurangi biaya, dan memberikan _insight_ tentang faktor-faktor apa saja yang paling berpengaruh terhadap kualitas anggur.
 - **Referensi Hasil Riset Terkait:**
   1. Cortez, P., Cerdeira, A., Almeida, F., Matos, T., & Reis, J. (2009). Modeling wine preferences by data mining from physicochemical properties. _Decision Support Systems_, _47_(4), 547–553. <https://doi.org/10.1016/j.dss.2009.05.016>
   2. Dahal, K. R., Dahal, J. N., Banjade, H., & Gaire, S. (2021). Prediction of wine quality using machine learning algorithms. _Open Journal of Statistics_, _11_(2), 278–289. <https://doi.org/10.4236/ojs.2021.112015>
@@ -31,15 +31,23 @@ Pada bagian ini, dijelaskan proses klarifikasi masalah terkait prediksi kualitas
 
   ### Solution statements
 
-  Untuk mencapai tujuan di atas, berikut adalah pendekatan solusi yang diajukan:
+  Untuk mencapai tujuan di atas, berikut adalah pendekatan solusi yang diajukan secara sistematis:
 
-  - **Menggunakan Tiga Algoritma Klasifikasi:**
-    - **Logistic Regression:** Sebagai model dasar (_baseline_) karena kesederhanaan dan interpretasibilitasnya.
-    - **Random Forest Classifier:** Sebagai model _ensemble_ yang kuat dan seringkali memberikan performa yang baik.
-    - **Support Vector Machine (SVM):** Sebagai model kuat lainnya yang efektif dalam ruang berdimensi tinggi.
-      Ketiga model akan dievaluasi performanya menggunakan metrik Akurasi, Presisi, Recall, dan F1-score untuk memilih model dengan kinerja terbaik.
-  - **Optimasi Model Terbaik dengan Hyperparameter Tuning:**
-    Model dengan performa terbaik dari ketiga algoritma di atas (berdasarkan metrik F1-score) akan dioptimalkan lebih lanjut menggunakan teknik `GridSearchCV`. Solusi ini terukur karena peningkatan (atau perubahan) performa dapat dilihat dari perbandingan nilai metrik evaluasi sebelum dan sesudah _tuning_.
+  1. **Analisis Data Eksploratif (EDA):** Melakukan analisis mendalam untuk memahami distribusi data, mengidentifikasi _outlier_, dan melihat korelasi antar variabel fisikokimia dengan kualitas anggur.
+
+  2. **Persiapan Data:** Membersihkan data dengan menangani duplikat dan _outlier_, serta melakukan standardisasi fitur untuk memastikan semua variabel memiliki skala yang sebanding, yang krusial bagi beberapa algoritma.
+
+  3. **Pengembangan Model Awal:** Menggunakan tiga algoritma klasifikasi yang berbeda untuk membangun model prediksi:
+
+     - **Logistic Regression:** Sebagai model dasar (_baseline_) karena kesederhanaan dan interpretasibilitasnya.
+     - **Random Forest Classifier:** Sebagai model _ensemble_ yang kuat dan seringkali memberikan performa yang baik serta tahan terhadap _overfitting_.
+     - **Support Vector Machine (SVM):** Sebagai model kuat lainnya yang efektif dalam ruang berdimensi tinggi dan masalah klasifikasi non-linear.
+
+  4. **Evaluasi dan Pemilihan Model:** Mengevaluasi ketiga model menggunakan metrik F1-Score, Akurasi, Presisi, dan Recall. Model dengan F1-Score tertinggi akan dipilih sebagai kandidat terbaik.
+
+  5. **Optimasi Model Terbaik dengan Hyperparameter Tuning:** Model dengan performa terbaik dari ketiga algoritma di atas (berdasarkan metrik F1-score) akan dioptimalkan lebih lanjut menggunakan teknik `GridSearchCV`. Solusi ini terukur karena peningkatan (atau perubahan) performa dapat dilihat dari perbandingan nilai metrik evaluasi sebelum dan sesudah _tuning_.
+
+  6. **Analisis Fitur Penting:** Menggunakan teknik _Permutation Importance_ pada model final untuk mengidentifikasi dan mengurutkan faktor fisikokimia yang paling berpengaruh terhadap kualitas anggur, sehingga menjawab pertanyaan bisnis utama.
 
 ## Data Understanding
 
@@ -47,12 +55,15 @@ Dataset yang digunakan dalam proyek ini adalah "Wine Quality Dataset," khususnya
 
 **Sumber Data:** [Wine Quality Dataset - Kaggle](https://www.kaggle.com/datasets/uciml/red-wine-quality-cortez-et-al-2009). Pada notebook, data diakses melalui path lokal `./datasets/winequality-red.csv`.
 
-**Informasi mengenai data:**
+**Inspeksi Awal Data:**
 
-- **Jumlah Data:** Dataset anggur merah terdiri dari 1599 sampel.
-- **Jumlah Fitur:** Terdapat 11 fitur input (variabel fisikokimia) dan 1 variabel output (kualitas). Semua fitur adalah numerik.
-- **Kualitas Data:** Tidak ditemukan nilai yang hilang (_missing values_), namun ditemukan adanya 240 baris duplikat.
-- **Variabel Target:** Variabel target `quality` memiliki skala 3 hingga 8. Untuk tujuan klasifikasi biner, variabel ini akan diubah menjadi `quality_category` (0 untuk 'Tidak Baik', 1 untuk 'Baik').
+- **Struktur Data:** Dataset terdiri dari **1599 sampel** dan **12 kolom** (11 fitur, 1 target). Semua fitur bertipe numerik (`float64`), dan target `quality` bertipe `int64`.
+- **Kualitas Data:**
+  - Tidak ditemukan nilai yang hilang (_missing values_).
+  - Ditemukan adanya **240 baris duplikat**.
+- **Statistik Deskriptif:**
+  - Variabel target `quality` memiliki rentang nilai dari 3 hingga 8.
+  - Terdapat variasi skala yang sangat besar antar fitur. Contohnya, `total sulfur dioxide` memiliki nilai maksimum 289, sedangkan `chlorides` hanya 0.611. Hal ini mengindikasikan kuat bahwa **penskalaan fitur (feature scaling) akan menjadi langkah krusial.**
 
 ### Variabel-variabel pada Red Wine Quality Dataset
 
@@ -73,20 +84,43 @@ Dataset yang digunakan dalam proyek ini adalah "Wine Quality Dataset," khususnya
 
 Tahapan EDA telah dilakukan untuk lebih memahami data, meliputi:
 
-- **Distribusi Variabel Target:** Variabel `quality` diubah menjadi biner (`quality_category`). Hasilnya, terdapat 744 sampel masuk kategori 'Tidak Baik' (skor ≤ 5) dan 855 sampel 'Baik' (skor > 5). Distribusi kelas ini cukup seimbang, yang baik untuk pemodelan klasifikasi.
-- **Distribusi Fitur Numerik:** Visualisasi menggunakan histogram menunjukkan bahwa banyak fitur memiliki distribusi yang miring ke kanan (_right-skewed_), terutama `fixed acidity`, `residual sugar`, `chlorides`, `free sulfur dioxide`, `total sulfur dioxide`, dan `sulphates`. Ini mengindikasikan bahwa sebagian besar anggur memiliki nilai rendah pada fitur-fitur ini, dengan beberapa memiliki nilai yang sangat tinggi.
-- **Deteksi Outlier:** Visualisasi menggunakan _boxplot_ pada semua fitur input menunjukkan adanya banyak titik data yang berada di luar jangkauan interkuartil (IQR). Hal ini mengindikasikan keberadaan _outlier_ yang signifikan di hampir semua variabel, yang perlu ditangani pada tahap persiapan data untuk mencegah distorsi pada model.
-- **Analisis Korelasi:** _Heatmap_ korelasi menunjukkan bahwa `alcohol` memiliki korelasi positif terkuat dengan `quality` (koefisien 0.48), yang berarti semakin tinggi kadar alkohol, kualitasnya cenderung lebih baik. Sebaliknya, `volatile acidity` memiliki korelasi negatif terkuat (-0.39), yang berarti keasaman volatil yang lebih tinggi cenderung menurunkan kualitas anggur.
+1. **Distribusi Variabel Target:** Variabel target `quality` diubah menjadi biner (`quality_category`) untuk menyederhanakan masalah: skor \> 5 menjadi 'Baik' (1) dan skor ≤ 5 menjadi 'Tidak Baik' (0).
+
+   ![Distribusi Variabel Target Biner](assets/gambar1.png)
+   _Gambar 1: Distribusi Variabel Target Biner_
+
+   - **Insight:** Setelah transformasi, terdapat 744 sampel masuk kategori 'Tidak Baik' (skor ≤ 5) dan 855 sampel 'Baik' (skor > 5). Distribusi kelas ini cukup seimbang, yang baik untuk pemodelan klasifikasi.
+
+2. **Distribusi Fitur Numerik:** Visualisasi menggunakan histogram menunjukkan bahwa banyak fitur memiliki distribusi yang miring ke kanan (_right-skewed_), terutama `fixed acidity`, `residual sugar`, `chlorides`, `free sulfur dioxide`, `total sulfur dioxide`, dan `sulphates`.
+
+   ![Distribusi Fitur Numerik](assets/gambar2.png)
+   _Gambar 2: Distribusi Fitur Numerik_
+
+   - **Insight:** Hal ini mengindikasikan bahwa sebagian besar anggur memiliki nilai rendah pada fitur-fitur ini, dengan beberapa memiliki nilai yang sangat tinggi.
+
+3. **Deteksi Outlier:** Visualisasi menggunakan _boxplot_ pada semua fitur input menunjukkan adanya banyak titik data yang berada di luar jangkauan interkuartil (IQR).
+
+   ![Deteksi Outlier](assets/gambar3.png)
+   _Gambar 3: Deteksi Outlier_
+
+   - **Insight:** Hal ini mengindikasikan keberadaan _outlier_ yang signifikan di hampir semua variabel, yang perlu ditangani pada tahap persiapan data untuk mencegah distorsi pada model.
+
+4. **Analisis Korelasi:** _Heatmap_ korelasi digunakan untuk melihat hubungan antar variabel.
+
+   ![Korelasi Antar Variabel](assets/gambar4.png)
+   _Gambar 4: Korelasi Antar Variabel_
+
+   - **Insight:** Hal ini menunjukkan bahwa `alcohol` memiliki korelasi positif terkuat dengan `quality` (koefisien 0.48), yang berarti semakin tinggi kadar alkohol, kualitasnya cenderung lebih baik. Sebaliknya, `volatile acidity` memiliki korelasi negatif terkuat (-0.39), yang berarti keasaman volatil yang lebih tinggi cenderung menurunkan kualitas anggur. Kedua fitur ini adalah kandidat prediktor terkuat.
 
 ## Data Preparation
 
-Teknik persiapan data yang dilakukan secara berurutan sesuai dengan notebook adalah:
+Proses persiapan data dilakukan secara sistematis untuk memastikan kualitas dan kesiapan data untuk pemodelan.
 
 1. **Transformasi Variabel Target:** Variabel `quality` (skala 3-8) diubah menjadi variabel biner `quality_category`. Anggur dengan `quality` > 5 dikategorikan sebagai 'Baik' (1) dan `quality` <= 5 sebagai 'Tidak Baik' (0).
-2. **Penanganan Data Duplikat:** Sebanyak 240 baris data yang terduplikasi dihapus dari dataset untuk menghindari bias pada model. Dataset bersih berisi 1359 sampel.
-3. **Penanganan Outlier:** _Outlier_ pada semua fitur input ditangani menggunakan metode IQR. Nilai yang berada di luar batas (Q1 - 1.5*IQR dan Q3 + 1.5*IQR) digantikan dengan nilai batas tersebut (_capping/winsorization_).
-4. **Pemisahan Data:** Dataset dibagi menjadi data latih (1087 sampel) dan data uji (272 sampel) dengan proporsi 80:20. Parameter `stratify=y` digunakan untuk memastikan distribusi kelas target tetap proporsional di kedua set, dan `random_state=42` untuk reproduktifitas.
-5. **Penskalaan Fitur (Standardization):** Semua fitur input distandarisasi menggunakan `StandardScaler`. Skaler ini dilatih (_fit_) hanya pada data latih dan kemudian digunakan untuk mentransformasi (_transform_) data latih dan data uji.
+2. **Penanganan Data Duplikat:** Sebanyak 240 baris data yang terduplikasi dihapus dari dataset untuk menghindari bias pada model. Ukuran dataset berkurang dari 1599 menjadi **1359 sampel unik**.
+3. **Penanganan Outlier:** _Outlier_ pada semua fitur input ditangani menggunakan metode IQR. Nilai yang berada di luar batas (Q1 - 1.5*IQR dan Q3 + 1.5*IQR) digantikan dengan nilai batas tersebut (_capping/winsorization_). Hasil menunjukkan jumlah _outlier_ pada semua fitur menjadi **0** setelah proses ini.
+4. **Pemisahan Data (Train-Test Split):** Dataset dibagi menjadi data latih 80% (1087 sampel) dan data uji 20% (272 sampel) dengan proporsi 80:20. Parameter `stratify=y` digunakan untuk memastikan distribusi kelas target tetap proporsional di kedua set (proporsi kelas 'Baik' dan 'Tidak Baik' sama di data latih dan uji), dan `random_state=42` untuk reproduktifitas.
+5. **Penskalaan Fitur (Standardization):** Semua fitur input distandarisasi menggunakan `StandardScaler`. Skaler ini dilatih (_fit_) hanya pada data latih dan kemudian digunakan untuk mentransformasi (_transform_) data latih dan data uji untuk mencegah kebocoran data. Semua fitur kini memiliki _mean_ mendekati 0 dan standar deviasi 1, membuat mereka sebanding.
 
 - **Proses dan Alasan Data Preparation:**
 
@@ -99,6 +133,55 @@ Setiap tahapan persiapan data memiliki tujuan spesifik.
 - **Penanganan Outlier:** Dilakukan untuk mengurangi pengaruh nilai-nilai ekstrem yang dapat mengganggu proses pembelajaran model dan metrik evaluasi. Metode _capping_ dipilih agar tidak kehilangan data sambil tetap membatasi pengaruh outlier.
 - **Pemisahan Data:** Praktik standar untuk mengevaluasi kemampuan generalisasi model pada data yang belum pernah dilihat sebelumnya dan mencegah _overfitting_.
 - **Penskalaan Fitur:** Penting karena algoritma seperti Logistic Regression dan SVM sensitif terhadap skala fitur. Standarisasi mengubah distribusi fitur agar memiliki mean 0 dan standar deviasi 1, memastikan semua fitur memiliki kontribusi yang setara.
+
+### **Validasi Persiapan Data (EDA Pasca-Preprocessing)**
+
+Setelah semua langkah persiapan data selesai, dilakukan serangkaian analisis dan visualisasi untuk memvalidasi efektivitas setiap proses dan memastikan data benar-benar siap untuk pemodelan.
+
+#### **1. Perbandingan Distribusi Fitur (Sebelum vs. Sesudah Penanganan Outlier)**
+
+Untuk membuktikan bahwa penanganan _outlier_ berhasil, distribusi setiap fitur dibandingkan secara visual menggunakan histogram dan box plot.
+
+| :-------------------------------------: | :-------------------------------------: |
+| ![Box Plot](assets/gambar5a.png) | ![Histogram](assets/gambar5b.png) |
+
+_Gambar 5: Perbandingan Box Plot dan Histogram untuk fitur `residual sugar` sebelum (kiri) dan sesudah (kanan) penanganan outlier._
+
+- **Metode:** Membuat visualisasi histogram dan box plot berdampingan (_side-by-side_) untuk data mentah dan data yang telah melalui proses _capping_.
+- **Tujuan:** Untuk melihat secara visual dampak dari proses pembersihan _outlier_.
+- **Insight dan Hasil:**
+  - **Box Plots:** Visualisasi ini secara jelas menunjukkan bahwa titik-titik _outlier_ yang sebelumnya ada di luar "kumis" plot (gambar kiri) telah berhasil dihilangkan pada data yang telah diproses (gambar kanan).
+  - **Histograms:** Distribusi fitur-fitur yang tadinya sangat miring (_skewed_) menjadi lebih terpusat dan tidak lagi memiliki "ekor" yang ekstrem.
+  - **Kesimpulan:** Proses _capping outlier_ terbukti efektif dalam meredam nilai-nilai ekstrem tanpa harus menghapus data.
+
+#### **2. Verifikasi Hasil Penskalaan Fitur (Standardization)**
+
+Untuk memastikan proses `StandardScaler` berjalan dengan benar, distribusi dari semua fitur pada data latih yang telah diskalakan divisualisasikan.
+
+![Distribusi setelah standardisasi](assets/gambar6.png)
+_Gambar 6: Distribusi semua fitur pada data latih setelah proses standardisasi._
+
+    - **Metode:** Membuat histogram untuk setiap fitur pada `X_train_scaled`.
+    - **Tujuan:** Untuk memverifikasi bahwa semua fitur kini memiliki skala yang seragam (rata-rata ≈ 0 dan standar deviasi ≈ 1).
+    - **Insight dan Hasil:**
+        - Semua histogram menunjukkan bahwa pusat distribusi setiap fitur kini berada di sekitar nilai **0** pada sumbu horizontal.
+        - Meskipun bentuk asli distribusi (misalnya miring atau simetris) tetap dipertahankan, rentang nilai untuk semua fitur kini seragam. Ini membuktikan bahwa `StandardScaler` telah berhasil, dan model seperti SVM tidak akan bias oleh fitur dengan skala nilai yang besar.
+
+#### **3. Analisis Korelasi Pasca-Pembersihan**
+
+Matriks korelasi dibuat kembali menggunakan data yang telah bersih dari duplikat dan _outlier_ untuk memastikan konsistensi informasi.
+
+![Matriks Korelasi Pasca-Pembersihan](assets/gambar7.png)
+_Gambar 7: Matriks Korelasi Pasca-Pembersihan._
+
+    - **Metode:** Membuat ulang *heatmap* korelasi pada `df_processed`.
+    - **Tujuan:** Untuk memeriksa apakah hubungan fundamental antar variabel berubah secara drastis setelah pembersihan data.
+    - **Insight dan Hasil:**
+        - Pola korelasi secara umum **tetap konsisten** dengan analisis sebelum pra-pemrosesan.
+        - `alcohol` (korelasi 0.45 dengan target) dan `volatile acidity` (korelasi -0.32) tetap menjadi fitur dengan korelasi terkuat.
+        - Ini adalah hasil yang baik karena menunjukkan bahwa proses pembersihan data tidak merusak atau mendistorsi informasi penting yang terkandung di dalam data, melainkan hanya menghilangkan *noise*.
+
+Dengan ketiga validasi ini, dapat disimpulkan bahwa tahap **Data Preparation** telah berhasil dan data berada dalam kondisi optimal untuk dilanjutkan ke tahap **Modeling**.
 
 ## Modeling
 
@@ -129,7 +212,7 @@ Tahapan ini membahas model _machine learning_ yang digunakan, dari cara kerja, k
   - **Cara Kerja:** Tujuan utama SVM adalah menemukan _hyperplane_ (garis atau bidang pemisah) terbaik yang dapat memisahkan data ke dalam kelas-kelas yang berbeda dengan margin (jarak) semaksimal mungkin. "Support vectors" adalah titik data yang paling dekat dengan _hyperplane_ dan paling menentukan posisi _hyperplane_ tersebut. Untuk data yang tidak dapat dipisahkan secara linear, SVM menggunakan _kernel trick_ (seperti RBF) untuk memetakan data ke ruang berdimensi lebih tinggi agar dapat dipisahkan.
     - **Kelebihan & Kekurangan:** Kelebihannya adalah sangat efektif di ruang berdimensi tinggi, fleksibel dengan berbagai fungsi _kernel_, dan memiliki performa yang kuat bahkan dengan data yang terbatas. Kekurangannya adalah kurang efisien pada dataset yang sangat besar dan sensitif terhadap pemilihan _kernel_ serta parameternya.
 
-### Pelatihan Model Awal
+### 1. Pelatihan Model Awal
 
 Tiga model dilatih menggunakan data latih untuk perbandingan awal. Berikut adalah konfigurasi parameter eksplisit yang digunakan:
 
@@ -138,6 +221,39 @@ Tiga model dilatih menggunakan data latih untuk perbandingan awal. Berikut adala
 | Logistic Regression          | `solver='liblinear'`, `max_iter=1000`, `random_state=42` |
 | Random Forest Classifier     | `n_estimators=100`, `random_state=42`                    |
 | Support Vector Machine (SVM) | `random_state=42`, `kernel='rbf'` (parameter default)    |
+
+- **Logistic Regression (Baseline):**
+
+  - **F1-Score:** 0.7245
+  - **Analisis:** Model dasar yang sederhana dengan performa yang layak dan tidak menunjukkan _overfitting_.
+  - _Confusion Matrix:_
+
+        Prediksi           Tidak Baik | Baik
+        ------------------------------------
+        Aktual Tidak Baik      93      |  35
+        Aktual Baik            40      | 104
+
+- **Random Forest Classifier:**
+
+  - **F1-Score:** 0.7612
+  - **Analisis:** Performa lebih baik dari _baseline_, namun menunjukkan **overfitting parah** (Akurasi Latih: 1.0000, Akurasi Uji: 0.7610).
+  - _Confusion Matrix:_
+
+        Prediksi           Tidak Baik | Baik
+        ------------------------------------
+        Aktual Tidak Baik      99      |  29
+        Aktual Baik            36      | 108
+
+- **Support Vector Machine (SVM):**
+
+  - **F1-Score:** **0.7722**
+  - **Analisis:** Menunjukkan **performa terbaik** di antara ketiganya dengan F1-Score tertinggi dan **generalisasi yang baik**.
+  - _Confusion Matrix:_
+
+        Prediksi           Tidak Baik | Baik
+        ------------------------------------
+        Aktual Tidak Baik     102      |  26
+        Aktual Baik            36      | 108
 
 ### Pemilihan Model Terbaik & Hyperparameter Tuning
 
@@ -184,16 +300,28 @@ Tabel berikut merangkum hasil evaluasi dari semua model yang diuji pada _test se
 | **SVM (Default)**       |   **0.8050**   |  **0.7721**   |   **0.7745**   | **0.7721**  |  **0.7722**   |
 | SVM (Tuned)             |     0.7893     |    0.7537     |     0.7546     |   0.7537    |    0.7539     |
 
+![Perbandingan Performa Model](assets/gambar8.png)
+_Gambar 8: Perbandingan Performa Model pada Data Uji._
+
+#### **Analisis Perbandingan Model**
+
+- **Model Terbaik:** **SVM (Default)** secara konsisten unggul di semua metrik evaluasi pada data uji, menjadikannya model final terpilih.
+- **Peningkatan dari Baseline:** Model SVM (Default) memberikan peningkatan F1-Score sebesar **6.58%** dibandingkan model _baseline_ (Logistic Regression), membuktikan efektivitas pemilihan model yang lebih kompleks.
+- **Analisis Overfitting:**
+
+  - `Logistic Regression`, `SVM (Default)`, dan `SVM (Tuned)` menunjukkan **generalisasi yang baik** dengan selisih kecil antara akurasi latih dan uji (\< 4%).
+  - `Random Forest` menunjukkan **generalisasi yang buruk (overfitting)** dengan selisih akurasi mencapai 23.9%.
+
 - **Model Terbaik:** **SVM (Default)** terpilih sebagai model terbaik dengan **F1-Score 0.7722**. Model ini tidak hanya memiliki F1-Score tertinggi, tetapi juga menunjukkan generalisasi yang baik karena perbedaan kecil antara akurasi pada data latih (0.8050) dan data uji (0.7721), tidak seperti Random Forest yang mengalami _overfitting_ parah (akurasi latih 1.0).
 
 ### Analisis Model Terbaik
 
 Berikut adalah _confusion matrix_ untuk model terbaik (**SVM Default**) pada data uji:
 
-```Prediksi Tidak Baik  Prediksi Baik
-Aktual Tidak Baik         102                 26
-Aktual Baik                36                108
-```
+    Prediksi           Tidak Baik | Baik
+    ------------------------------------
+    Aktual Tidak Baik     102      |  26
+    Aktual Baik            36      | 108
 
 - Dari 144 anggur yang sebenarnya berkualitas 'Baik' (1), model berhasil memprediksi **108** dengan benar (True Positive) dan melewatkan **36** (False Negative).
 - Dari 128 anggur yang sebenarnya berkualitas 'Tidak Baik' (0), model berhasil memprediksi **102** dengan benar (True Negative) dan salah mengklasifikasikan **26** sebagai 'Baik' (False Positive).
@@ -207,7 +335,15 @@ Menggunakan metode **Permutation Importance** pada model SVM terbaik, ditemukan 
 3. `volatile acidity`
 4. `total sulfur dioxide`
 
-Hasil ini menjawab salah satu tujuan bisnis utama, yaitu mengidentifikasi faktor-faktor kunci penentu kualitas anggur, di mana kadar alkohol adalah yang paling dominan.
+![Peringkat Fitur](assets/gambar9.png)
+_Gambar 9: Peringkat Fitur Berdasarkan Penurunan Rata-rata F1-Score._
+
+- **Kesimpulan Insight Bisnis:**
+  1. **`alcohol`** adalah faktor **paling dominan** dalam menentukan kualitas anggur. Semakin tinggi kadar alkohol, semakin besar kemungkinan anggur dinilai 'Baik'.
+  2. **`sulphates`** dan **`volatile acidity`** menempati peringkat kedua dan ketiga. Ini menunjukkan bahwa keseimbangan kimia (pengawet dan tingkat keasaman yang tidak diinginkan) adalah faktor penentu kualitas yang krusial setelah alkohol.
+  3. **`residual sugar`** (tidak ditampilkan karena nilainya sangat rendah) memiliki pengaruh paling kecil, menunjukkan bahwa tingkat kemanisan bukan pembeda utama dalam dataset ini.
+  4. Hal ini sangat konsisten dengan temuan pada tahap EDA, memberikan keyakinan bahwa kesimpulan yang ditarik bersifat solid.
+  5. Hasil ini menjawab salah satu tujuan bisnis utama, yaitu mengidentifikasi faktor-faktor kunci penentu kualitas anggur, di mana kadar alkohol adalah yang paling dominan.
 
 ### Penjelasan Formula dan Cara Kerja Metrik
 
