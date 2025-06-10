@@ -142,10 +142,11 @@ Setelah semua langkah persiapan data selesai, dilakukan serangkaian analisis dan
 
 Untuk membuktikan bahwa penanganan _outlier_ berhasil, distribusi setiap fitur dibandingkan secara visual menggunakan histogram dan box plot.
 
-| :-------------------------------------: | :-------------------------------------: |
-| ![Box Plot](assets/gambar5a.png) | ![Histogram](assets/gambar5b.png) |
+|             Box Plot             |             Histogram             |
+| :------------------------------: | :-------------------------------: |
+| ![Box Plot](assets/gambar5b.png) | ![Histogram](assets/gambar5a.png) |
 
-_Gambar 5: Perbandingan Box Plot dan Histogram untuk fitur `residual sugar` sebelum (kiri) dan sesudah (kanan) penanganan outlier._
+_Gambar 5: Perbandingan Box Plot dan Histogram sebelum (kiri) dan sesudah (kanan) penanganan outlier._
 
 - **Metode:** Membuat visualisasi histogram dan box plot berdampingan (_side-by-side_) untuk data mentah dan data yang telah melalui proses _capping_.
 - **Tujuan:** Untuk melihat secara visual dampak dari proses pembersihan _outlier_.
@@ -161,11 +162,11 @@ Untuk memastikan proses `StandardScaler` berjalan dengan benar, distribusi dari 
 ![Distribusi setelah standardisasi](assets/gambar6.png)
 _Gambar 6: Distribusi semua fitur pada data latih setelah proses standardisasi._
 
-    - **Metode:** Membuat histogram untuk setiap fitur pada `X_train_scaled`.
-    - **Tujuan:** Untuk memverifikasi bahwa semua fitur kini memiliki skala yang seragam (rata-rata ≈ 0 dan standar deviasi ≈ 1).
-    - **Insight dan Hasil:**
-        - Semua histogram menunjukkan bahwa pusat distribusi setiap fitur kini berada di sekitar nilai **0** pada sumbu horizontal.
-        - Meskipun bentuk asli distribusi (misalnya miring atau simetris) tetap dipertahankan, rentang nilai untuk semua fitur kini seragam. Ini membuktikan bahwa `StandardScaler` telah berhasil, dan model seperti SVM tidak akan bias oleh fitur dengan skala nilai yang besar.
+- **Metode:** Membuat histogram untuk setiap fitur pada `X_train_scaled`.
+- **Tujuan:** Untuk memverifikasi bahwa semua fitur kini memiliki skala yang seragam (rata-rata ≈ 0 dan standar deviasi ≈ 1).
+- **Insight dan Hasil:**
+  - Semua histogram menunjukkan bahwa pusat distribusi setiap fitur kini berada di sekitar nilai **0** pada sumbu horizontal.
+  - Meskipun bentuk asli distribusi (misalnya miring atau simetris) tetap dipertahankan, rentang nilai untuk semua fitur kini seragam. Ini membuktikan bahwa `StandardScaler` telah berhasil, dan model seperti SVM tidak akan bias oleh fitur dengan skala nilai yang besar.
 
 #### **3. Analisis Korelasi Pasca-Pembersihan**
 
@@ -174,12 +175,12 @@ Matriks korelasi dibuat kembali menggunakan data yang telah bersih dari duplikat
 ![Matriks Korelasi Pasca-Pembersihan](assets/gambar7.png)
 _Gambar 7: Matriks Korelasi Pasca-Pembersihan._
 
-    - **Metode:** Membuat ulang *heatmap* korelasi pada `df_processed`.
-    - **Tujuan:** Untuk memeriksa apakah hubungan fundamental antar variabel berubah secara drastis setelah pembersihan data.
-    - **Insight dan Hasil:**
-        - Pola korelasi secara umum **tetap konsisten** dengan analisis sebelum pra-pemrosesan.
-        - `alcohol` (korelasi 0.45 dengan target) dan `volatile acidity` (korelasi -0.32) tetap menjadi fitur dengan korelasi terkuat.
-        - Ini adalah hasil yang baik karena menunjukkan bahwa proses pembersihan data tidak merusak atau mendistorsi informasi penting yang terkandung di dalam data, melainkan hanya menghilangkan *noise*.
+- **Metode:** Membuat ulang _heatmap_ korelasi pada `df_processed`.
+- **Tujuan:** Untuk memeriksa apakah hubungan fundamental antar variabel berubah secara drastis setelah pembersihan data.
+- **Insight dan Hasil:**
+  - Pola korelasi secara umum **tetap konsisten** dengan analisis sebelum pra-pemrosesan.
+  - `alcohol` (korelasi 0.45 dengan target) dan `volatile acidity` (korelasi -0.32) tetap menjadi fitur dengan korelasi terkuat.
+  - Ini adalah hasil yang baik karena menunjukkan bahwa proses pembersihan data tidak merusak atau mendistorsi informasi penting yang terkandung di dalam data, melainkan hanya menghilangkan _noise_.
 
 Dengan ketiga validasi ini, dapat disimpulkan bahwa tahap **Data Preparation** telah berhasil dan data berada dalam kondisi optimal untuk dilanjutkan ke tahap **Modeling**.
 
@@ -230,8 +231,8 @@ Tiga model dilatih menggunakan data latih untuk perbandingan awal. Berikut adala
 
         Prediksi           Tidak Baik | Baik
         ------------------------------------
-        Aktual Tidak Baik      93      |  35
-        Aktual Baik            40      | 104
+        Aktual Tidak Baik      94      |  34
+        Aktual Baik            41      | 103
 
 - **Random Forest Classifier:**
 
@@ -269,7 +270,16 @@ Tiga model dilatih menggunakan data latih untuk perbandingan awal. Berikut adala
   ```
 
 - **Hasil Improvement:**
+
   - Proses `GridSearchCV` menemukan parameter terbaik yaitu `{'C': 100, 'gamma': 0.01, 'kernel': 'rbf'}`.
+
+  Berikut adalah _confusion matrix_ untuk model SVM Tuned:
+
+      Prediksi           Tidak Baik | Baik
+      ------------------------------------
+      Aktual Tidak Baik      97      |  31
+      Aktual Baik            36      | 108
+
   - Namun, setelah diuji, model yang telah di-_tuning_ ini justru menunjukkan performa sedikit lebih rendah (F1-Score 0.7539) pada data uji dibandingkan model SVM awal (F1-Score 0.7722).
   - Fenomena ini menunjukkan bahwa konfigurasi parameter awal (SVM Default) memiliki kemampuan generalisasi yang lebih baik pada data uji yang tidak terlihat. Oleh karena itu, **model akhir yang dipilih sebagai solusi terbaik adalah SVM dengan parameter awal**, bukan hasil _tuning_.
 
@@ -342,7 +352,7 @@ _Gambar 9: Peringkat Fitur Berdasarkan Penurunan Rata-rata F1-Score._
 - **Kesimpulan Insight Bisnis:**
   1. **`alcohol`** adalah faktor **paling dominan** dalam menentukan kualitas anggur. Semakin tinggi kadar alkohol, semakin besar kemungkinan anggur dinilai 'Baik'.
   2. **`sulphates`** dan **`volatile acidity`** menempati peringkat kedua dan ketiga. Ini menunjukkan bahwa keseimbangan kimia (pengawet dan tingkat keasaman yang tidak diinginkan) adalah faktor penentu kualitas yang krusial setelah alkohol.
-  3. **`residual sugar`** (tidak ditampilkan karena nilainya sangat rendah) memiliki pengaruh paling kecil, menunjukkan bahwa tingkat kemanisan bukan pembeda utama dalam dataset ini.
+  3. **`residual sugar`** memiliki pengaruh paling kecil, menunjukkan bahwa tingkat kemanisan bukan pembeda utama dalam dataset ini.
   4. Hal ini sangat konsisten dengan temuan pada tahap EDA, memberikan keyakinan bahwa kesimpulan yang ditarik bersifat solid.
   5. Hasil ini menjawab salah satu tujuan bisnis utama, yaitu mengidentifikasi faktor-faktor kunci penentu kualitas anggur, di mana kadar alkohol adalah yang paling dominan.
 
