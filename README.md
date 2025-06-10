@@ -1,15 +1,5 @@
 # Red Wine Quality Prediction 🍷✨
 
-\<p align="center"\>
-\<img src="[tautan mencurigakan telah dihapus]" alt="Python Version"\>
-\<img src="[tautan mencurigakan telah dihapus]" alt="Scikit-learn"\>
-\<img src="[tautan mencurigakan telah dihapus]" alt="Pandas"\>
-\<img src="[tautan mencurigakan telah dihapus]" alt="NumPy"\>
-\<img src="[tautan mencurigakan telah dihapus]" alt="Matplotlib"\>
-\<img src="[tautan mencurigakan telah dihapus]" alt="Seaborn"\>
-\<img src="[tautan mencurigakan telah dihapus]" alt="Jupyter Notebook"\>
-\</p\>
-
 ## Ringkasan Proyek
 
 Proyek ini bertujuan untuk mengembangkan model _machine learning_ yang mampu memprediksi kualitas anggur merah (_red wine_) berdasarkan atribut fisikokimianya. Secara tradisional, evaluasi kualitas anggur bergantung pada penilaian sensorik oleh para ahli yang bisa jadi subjektif, mahal, dan memakan waktu. Proyek ini menawarkan solusi berbasis data untuk menciptakan sistem penilaian yang lebih objektif, efisien, dan konsisten.
