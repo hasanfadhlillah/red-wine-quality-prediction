@@ -1,7 +1,7 @@
 # Red Wine Quality Prediction 🍷✨
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Python-3.7%2B-blue?logo=python&logoColor=white" alt="Python Version">Add commentMore actions
+  <img src="https://img.shields.io/badge/Python-3.7%2B-blue?logo=python&logoColor=white" alt="Python Version">
   <img src="https://img.shields.io/badge/Scikit--learn-0.24%2B-orange?logo=scikit-learn&logoColor=white" alt="Scikit-learn">
   <img src="https://img.shields.io/badge/Pandas-1.1%2B-green?logo=pandas&logoColor=white" alt="Pandas">
   <img src="https://img.shields.io/badge/NumPy-1.19%2B-blueviolet?logo=numpy&logoColor=white" alt="NumPy">
