@@ -1,5 +1,15 @@
 # Red Wine Quality Prediction 🍷✨
 
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.7%2B-blue?logo=python&logoColor=white" alt="Python Version">Add commentMore actions
+  <img src="https://img.shields.io/badge/Scikit--learn-0.24%2B-orange?logo=scikit-learn&logoColor=white" alt="Scikit-learn">
+  <img src="https://img.shields.io/badge/Pandas-1.1%2B-green?logo=pandas&logoColor=white" alt="Pandas">
+  <img src="https://img.shields.io/badge/NumPy-1.19%2B-blueviolet?logo=numpy&logoColor=white" alt="NumPy">
+  <img src="https://img.shields.io/badge/Matplotlib-3.3%2B-yellowgreen?logo=matplotlib&logoColor=white" alt="Matplotlib">
+  <img src="https://img.shields.io/badge/Seaborn-0.11%2B-purple?logo=seaborn&logoColor=white" alt="Seaborn">
+  <img src="https://img.shields.io/badge/Jupyter-Notebook-orange?logo=jupyter&logoColor=white" alt="Jupyter Notebook">
+</p>
+
 ## Ringkasan Proyek
 
 Proyek ini bertujuan untuk mengembangkan model _machine learning_ yang mampu memprediksi kualitas anggur merah (_red wine_) berdasarkan atribut fisikokimianya. Secara tradisional, evaluasi kualitas anggur bergantung pada penilaian sensorik oleh para ahli yang bisa jadi subjektif, mahal, dan memakan waktu. Proyek ini menawarkan solusi berbasis data untuk menciptakan sistem penilaian yang lebih objektif, efisien, dan konsisten.
